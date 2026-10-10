@@ -1,3 +1,5 @@
+HTML
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +27,7 @@
 
         /* 背景設定 */
         .bg-container {
-            background-image: url('new_background.png');
+            background-image: url('bg_landingPage.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -37,6 +39,18 @@
             align-items: center;
             text-align: center;
             position: relative;
+        }
+
+        /* 半透明黑色遮罩 */
+        .bg-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         .content {
@@ -68,7 +82,7 @@
             font-weight: 300;
         }
 
-        /* 底部版權宣告細字 */
+        /* 底部版權宣告細字（取消全大階） */
         .footer-copy {
             position: absolute;
             bottom: 30px;
@@ -77,8 +91,8 @@
             font-size: 10px;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-transform: none;
         }
     </style>
 </head>
