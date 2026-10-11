@@ -18,7 +18,7 @@
             padding: 0;
             height: 100vh;
             overflow: hidden;
-            background-color: #060b18; /* 底層深藍夜空色 */
+            background-color: #040814; /* 底層深藍夜空色 */
         }
 
         /* 頁面排版容器 */
@@ -30,7 +30,7 @@
             padding: 1rem;
         }
 
-        /* 純 CSS 模擬你張 background 嘅流動光暈背景 */
+        /* 純 CSS 5光暈動態背景容器 */
         .css-bg-container {
             position: fixed;
             top: 0;
@@ -39,84 +39,98 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #101c38 0%, #060b18 100%);
+            background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
         }
 
-        /* 光暈 1：右上角核心藍色光暈（對應你張圖右上方嘅光斑） */
+        /* 光暈 1：右上角主藍色光暈 (快速度郁動) */
         .glow-orb-1 {
             position: absolute;
-            top: -10%;
+            top: -15%;
+            right: -15%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(0, 130, 255, 0.65) 0%, rgba(0, 80, 220, 0.3) 45%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(55px);
+            animation: floatOrb1 6s ease-in-out infinite alternate;
+        }
+
+        /* 光暈 2：左下角深藍流動光暈 (中快速度) */
+        .glow-orb-2 {
+            position: absolute;
+            bottom: -20%;
+            left: -20%;
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(14, 75, 190, 0.6) 0%, rgba(4, 30, 90, 0.35) 50%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(65px);
+            animation: floatOrb2 7.5s ease-in-out infinite alternate;
+        }
+
+        /* 光暈 3：中間亮藍閃爍光暈 (快節奏脈動) */
+        .glow-orb-3 {
+            position: absolute;
+            top: 25%;
+            left: 15%;
+            width: 55vw;
+            height: 55vw;
+            background: radial-gradient(circle, rgba(40, 120, 255, 0.45) 0%, transparent 65%);
+            border-radius: 50%;
+            filter: blur(50px);
+            animation: pulseOrb3 4.5s ease-in-out infinite alternate;
+        }
+
+        /* 光暈 4 (新增)：左上角靛藍動態光暈 */
+        .glow-orb-4 {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(30, 80, 230, 0.5) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: floatOrb4 5.5s ease-in-out infinite alternate;
+        }
+
+        /* 光暈 5 (新增)：右下角深寶藍流動光暈 */
+        .glow-orb-5 {
+            position: absolute;
+            bottom: -15%;
             right: -10%;
             width: 65vw;
             height: 65vw;
-            background: radial-gradient(circle, rgba(0, 119, 255, 0.55) 0%, rgba(0, 80, 200, 0.25) 40%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 100, 255, 0.55) 0%, rgba(10, 40, 120, 0.2) 60%, transparent 80%);
             border-radius: 50%;
-            filter: blur(60px);
-            animation: floatOrb1 18s ease-in-out infinite alternate;
+            filter: blur(55px);
+            animation: floatOrb5 6.8s ease-in-out infinite alternate;
         }
 
-        /* 光暈 2：左下角深藍流動光暈 */
-        .glow-orb-2 {
-            position: absolute;
-            bottom: -15%;
-            left: -15%;
-            width: 75vw;
-            height: 75vw;
-            background: radial-gradient(circle, rgba(14, 65, 160, 0.5) 0%, rgba(5, 25, 75, 0.3) 50%, transparent 75%);
-            border-radius: 50%;
-            filter: blur(70px);
-            animation: floatOrb2 22s ease-in-out infinite alternate;
-        }
-
-        /* 光暈 3：中間微光呼吸層（增加層次感） */
-        .glow-orb-3 {
-            position: absolute;
-            top: 30%;
-            left: 20%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(30, 90, 210, 0.2) 0%, transparent 60%);
-            border-radius: 50%;
-            filter: blur(50px);
-            animation: pulseOrb 12s ease-in-out infinite alternate;
-        }
-
-        /* 動畫設定：右上角光斑郁動 */
+        /* 動畫設定：大幅加快郁動速度同幅度 */
         @keyframes floatOrb1 {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(-8%, 10%) scale(1.15);
-            }
-            100% {
-                transform: translate(5%, -5%) scale(0.95);
-            }
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(-15%, 18%) scale(1.25) rotate(10deg); }
         }
 
-        /* 動畫設定：左下角光斑郁動 */
         @keyframes floatOrb2 {
-            0% {
-                transform: translate(0, 0) scale(1) rotate(0deg);
-            }
-            50% {
-                transform: translate(10%, -8%) scale(1.1) rotate(5deg);
-            }
-            100% {
-                transform: translate(-5%, 5%) scale(0.9) rotate(-5deg);
-            }
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(18%, -15%) scale(1.2) rotate(-12deg); }
         }
 
-        /* 動畫設定：中間呼吸燈效果 */
-        @keyframes pulseOrb {
-            0% {
-                transform: scale(0.9);
-                opacity: 0.4;
-            }
-            100% {
-                transform: scale(1.25);
-                opacity: 0.8;
-            }
+        @keyframes pulseOrb3 {
+            0% { transform: scale(0.85) translate(0, 0); opacity: 0.3; }
+            100% { transform: scale(1.4) translate(12%, 10%); opacity: 0.85; }
+        }
+
+        @keyframes floatOrb4 {
+            0% { transform: translate(0, 0) scale(0.9) rotate(0deg); }
+            100% { transform: translate(20%, 20%) scale(1.3) rotate(15deg); }
+        }
+
+        @keyframes floatOrb5 {
+            0% { transform: translate(0, 0) scale(1.1) rotate(0deg); }
+            100% { transform: translate(-18%, -18%) scale(0.9) rotate(-15deg); }
         }
 
         /* 玻璃擬態卡片 */
@@ -169,11 +183,13 @@
 </head>
 <body class="relative">
 
-    <!-- 純 CSS 流動背景與藍色光暈層 -->
+    <!-- 5個動態光暈背景層 -->
     <div class="css-bg-container">
         <div class="glow-orb-1"></div>
         <div class="glow-orb-2"></div>
         <div class="glow-orb-3"></div>
+        <div class="glow-orb-4"></div>
+        <div class="glow-orb-5"></div>
     </div>
 
     <!-- 頁面排版容器 -->
