@@ -42,7 +42,7 @@
             background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
         }
 
-        /* 4個動態光暈：Desktop 預設你俾嘅速度 */
+        /* 4個動態光暈：Desktop 保持你原本設定嘅速度 */
         .glow-orb-1 {
             position: absolute;
             top: 10%;
@@ -116,12 +116,12 @@
             100% { transform: translate3d(-38vw, -35vh, 0) scale(0.75) rotate(-45deg); }
         }
 
-        /* 📱 Mobile 專用優化：當螢幕細過 768px 時，動畫速度加快大約 1 倍（變得更快、更動感） */
+        /* 📱 Mobile 專用加速：當螢幕細過 768px 時，將速度再加快一倍（0.5s - 0.7s），動感極強 */
         @media screen and (max-width: 768px) {
-            .glow-orb-1 { animation-duration: 1.2s !important; }
-            .glow-orb-2 { animation-duration: 1.4s !important; }
-            .glow-orb-3 { animation-duration: 1.0s !important; }
-            .glow-orb-4 { animation-duration: 1.3s !important; }
+            .glow-orb-1 { animation-duration: 0.6s !important; }
+            .glow-orb-2 { animation-duration: 0.7s !important; }
+            .glow-orb-3 { animation-duration: 0.5s !important; }
+            .glow-orb-4 { animation-duration: 0.65s !important; }
         }
 
         /* 玻璃擬態卡片 */
