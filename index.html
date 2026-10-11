@@ -21,17 +21,46 @@
             height: 100%;
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-weight: 300;
-            overflow: hidden; /* 防止背景動畫放大時出現捲軸 */
+            overflow: hidden;
             background-color: #0b0b0b;
         }
 
-        /* 背景設定 (已加入呼吸流動光影動畫) */
+        /* 專門負責動態流動嘅背景圖片容器（強制手機 GPU 硬件加速） */
+        .bg-image-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-image-container img {
+            width: 130%;
+            height: 130%;
+            object-fit: cover;
+            position: absolute;
+            top: -15%;
+            left: -15%;
+            animation: gradientMotion 6s ease-in-out infinite alternate;
+        }
+
+        /* 手機同電腦都100%有效嘅流動與呼吸動畫 */
+        @keyframes gradientMotion {
+            0% {
+                transform: scale(1) translate(0px, 0px);
+            }
+            50% {
+                transform: scale(1.05) translate(-15px, -10px);
+            }
+            100% {
+                transform: scale(1.02) translate(10px, 15px);
+            }
+        }
+
+        /* 內容置中容器 */
         .bg-container {
-            background-image: url('bg_landingPage.png');
-            background-size: 125% 125%; /* 放大背景以留出空間俾動畫流動 */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #0b0b0b;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -39,39 +68,10 @@
             align-items: center;
             text-align: center;
             position: relative;
-            animation: gradientMotion 6s ease-in-out infinite alternate; /* 6秒循環嘅柔和呼吸流動特效 */
-        }
-
-        /* 背景流動與呼吸動畫特效 */
-        @keyframes gradientMotion {
-            0% {
-                background-position: 0% 40%;
-                transform: scale(1);
-            }
-            50% {
-                background-position: 100% 60%;
-                transform: scale(1.04); /* 輕微呼吸放大 */
-            }
-            100% {
-                background-position: 50% 100%;
-                transform: scale(1);
-            }
-        }
-
-        /* 半透明黑色遮罩 */
-        .bg-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0);
-            z-index: 1;
+            z-index: 2;
         }
 
         .content {
-            z-index: 2;
             padding: 20px;
             max-width: 700px;
             width: 100%;
@@ -82,7 +82,7 @@
             max-width: 300px; /* 手機版 Logo 大小 */
             width: 100%;
             height: auto;
-            margin-bottom: 0.8rem; /* 手機版 Logo 同 Coming Soon 之間嘅距離 */
+            margin-bottom: 0.8rem; /* 手機版 Logo 同 Coming Soon 距離 */
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -113,7 +113,7 @@
             }
         }
 
-        /* 底部版權宣告細字（獨立固定喺最底層，絕對唔會跟住背景 scale 郁動） */
+        /* 底部版權宣告細字（獨立固定喺最底層，絕對唔會跟住背景郁） */
         .footer-copy {
             position: fixed;
             bottom: 25px;
@@ -132,6 +132,11 @@
 </head>
 <body>
 
+    <!-- 獨立動態背景圖片層（手機與電腦同步流動） -->
+    <div class="bg-image-container">
+        <img src="bg_landingPage.png" alt="Background Image">
+    </div>
+
     <div class="bg-container">
         <div class="content">
             <div class="logo">
@@ -143,7 +148,7 @@
         </div>
     </div>
 
-    <!-- 底部版權宣告（已移出 bg-container，實行獨立固定） -->
+    <!-- 底部版權宣告（獨立固定） -->
     <div class="footer-copy">
         © 2026 GroovyHouse Ltd. All Rights Reserved.
     </div>
