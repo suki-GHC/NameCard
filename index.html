@@ -1,3 +1,12 @@
+呢張藍色漸層背景（Blurry Gradient）勁靚、好有高階 VJ 視覺同 Apple 官網嘅質感！
+
+如果要將佢升級做「純 CSS 流動背景（唔依賴外部圖片檔案，隨時隨地 100% 順暢運作）」，而且要做到好似你張卡片咁有 4 個光暈喺度流動、呼吸、交織，我地可以直接用純 CSS 來還原呢張圖嘅藍調美學，仲會加埋強烈嘅 GPU 硬件加速，令到手機同電腦都咁流暢。
+
+另外，版權位都順便幫你改返做之前傾好嘅永久版權（唔使年年手動改年份）。
+
+以下係幫你升級好、完美融合呢種藍調美學嘅完整 Landing Page 程式碼：
+HTML
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,51 +31,98 @@
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-weight: 300;
             overflow: hidden;
-            background-color: #0b0b0b;
+            background-color: #040814;
         }
 
-        /* 背景設定：將背景圖用最穩陣嘅 background-image 寫法，確保絕對唔會變黑 */
+        /* 純 CSS 動態藍調背景容器 */
         .bg-container {
-            background-image: url('bg_landingPage.png');
-            background-size: 130% 130%; /* 放大背景以留出空間俾動畫流動 */
-            background-position: center;
-            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative;
-            animation: gradientMotion 6s ease-in-out infinite alternate; /* 手機電腦同步嘅 6秒流動速度 */
         }
 
-        /* 手機與電腦同步嘅呼吸流動動畫特效 */
-        @keyframes gradientMotion {
-            0% {
-                background-position: 45% 45%;
-                transform: scale(1);
-            }
-            50% {
-                background-position: 55% 55%;
-                transform: scale(1.05); /* 輕微呼吸放大 */
-            }
-            100% {
-                background-position: 50% 50%;
-                transform: scale(1.02);
-            }
-        }
-
-        /* 半透明黑色遮罩 */
-        .bg-container::before {
-            content: "";
+        /* 4個動態藍調光暈（完美還原你上圖嘅柔和漸層與流動感） */
+        .glow-orb-1 {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0);
-            z-index: 1;
+            top: 5%;
+            right: 5%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(100, 210, 255, 0.7) 0%, rgba(0, 120, 255, 0.4) 45%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(45px);
+            will-change: transform;
+            animation: floatOrb1 3s ease-in-out infinite alternate;
+        }
+
+        .glow-orb-2 {
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+            width: 75vw;
+            height: 75vw;
+            background: radial-gradient(circle, rgba(0, 90, 240, 0.75) 0%, rgba(5, 30, 130, 0.4) 50%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(50px);
+            will-change: transform;
+            animation: floatOrb2 3.5s ease-in-out infinite alternate;
+        }
+
+        .glow-orb-3 {
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            width: 65vw;
+            height: 65vw;
+            background: radial-gradient(circle, rgba(180, 230, 255, 0.6) 0%, rgba(30, 140, 255, 0.35) 60%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(40px);
+            will-change: transform;
+            animation: floatOrb3 2.8s ease-in-out infinite alternate;
+        }
+
+        .glow-orb-4 {
+            position: absolute;
+            bottom: 15%;
+            right: 10%;
+            width: 65vw;
+            height: 65vw;
+            background: radial-gradient(circle, rgba(0, 150, 255, 0.8) 0%, rgba(10, 50, 160, 0.3) 55%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(45px);
+            will-change: transform;
+            animation: floatOrb4 3.2s ease-in-out infinite alternate;
+        }
+
+        /* 呼吸流動軌跡動畫 */
+        @keyframes floatOrb1 {
+            0% { transform: translate3d(0, 0, 0) scale(0.85) rotate(0deg); }
+            100% { transform: translate3d(-30vw, 25vh, 0) scale(1.4) rotate(30deg); }
+        }
+
+        @keyframes floatOrb2 {
+            0% { transform: translate3d(0, 0, 0) scale(0.9) rotate(0deg); }
+            100% { transform: translate3d(30vw, -25vh, 0) scale(1.35) rotate(-30deg); }
+        }
+
+        @keyframes floatOrb3 {
+            0% { transform: translate3d(0, 0, 0) scale(0.8) rotate(0deg); }
+            100% { transform: translate3d(35vw, 25vh, 0) scale(1.5) rotate(45deg); }
+        }
+
+        @keyframes floatOrb4 {
+            0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate3d(-30vw, -25vh, 0) scale(0.8) rotate(-45deg); }
         }
 
         .content {
@@ -78,10 +134,10 @@
 
         /* === Logo 大小設定 (手機版 vs 電腦版) === */
         .logo img {
-            max-width: 300px; /* 手機版 Logo 大小 */
+            max-width: 280px; /* 手機版 Logo 大小 */
             width: 100%;
             height: auto;
-            margin-bottom: 0.8rem; /* 手機版 Logo 同 Coming Soon 距離 */
+            margin-bottom: 0.8rem;
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -91,35 +147,35 @@
         .coming-soon h2 {
             font-family: 'GrandCru', sans-serif;
             color: #ffffff;
-            font-size: 1.1rem;     /* 預設手機版字體大小 */
-            letter-spacing: 4px;   /* 手機版字距 */
+            font-size: 1.1rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin: 0;
             font-weight: 300;
             opacity: 0.9;
         }
 
-        /* 當螢幕闊度大於 768px（即平版同電腦 Desktop）時生效 */
+        /* 當螢幕闊度大於 768px（平板同電腦 Desktop）時生效 */
         @media (min-width: 768px) {
             .logo img {
-                max-width: 800px;  /* 電腦版 Logo 大小 */
-                margin-bottom: 2.5rem; /* 電腦版寬裕距離 */
+                max-width: 750px; /* 電腦版 Logo 大小 */
+                margin-bottom: 2.2rem;
             }
             .coming-soon h2 {
-                font-size: 1.8rem; /* 電腦版還原大字 */
-                letter-spacing: 8px; /* 電腦版寬字距 */
+                font-size: 1.8rem;
+                letter-spacing: 8px;
                 opacity: 1;
             }
         }
 
-        /* 底部版權宣告細字：獨立固定喺最底層，絕對不隨背景縮放或郁動 */
+        /* 底部版權宣告細字：永久格式，不隨縮放郁動 */
         .footer-copy {
             position: fixed;
             bottom: 25px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
-            color: #FFFFFF;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 10px;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
@@ -131,7 +187,13 @@
 </head>
 <body>
 
+    <!-- 4個純 CSS 藍調流動光暈背景 -->
     <div class="bg-container">
+        <div class="glow-orb-1"></div>
+        <div class="glow-orb-2"></div>
+        <div class="glow-orb-3"></div>
+        <div class="glow-orb-4"></div>
+        
         <div class="content">
             <div class="logo">
                 <img src="logo.png" alt="GroovyHouse Creative Logo">
@@ -142,9 +204,9 @@
         </div>
     </div>
 
-    <!-- 底部版權宣告（獨立固定喺最底，保證企定唔郁、唔會跟住 scale） -->
+    <!-- 底部永久版權宣告 -->
     <div class="footer-copy">
-        © 2026 GroovyHouse Ltd. All Rights Reserved.
+        © GroovyHouse Ltd. All Rights Reserved.
     </div>
 
 </body>
