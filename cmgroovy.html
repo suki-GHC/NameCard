@@ -103,7 +103,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 relative">
+<body class="relative">
 
     <!-- 背景容器 -->
     <div class="bg-image-container">
@@ -111,21 +111,23 @@
         <div class="bg-overlay"></div>
     </div>
 
-   <!-- 主卡片容器 -->
-    <div class="w-full max-w-sm glass-card rounded-[2.8rem] px-8 py-10 text-center text-white relative z-10 animate-entrance">
-        
-        <!-- Company Logo 與 Company Name -->
-        <div class="mb-2 fade-in-up delay-1">
-            <div class="w-90 h-24 mx-auto flex items-center justify-center overflow-hidden opacity-90 transition-transform duration-500 hover:scale-105">
-                <img src="logo.png" alt="Company Logo" class="w-full h-full object-contain">
+    <!-- 頁面排版容器 -->
+    <div class="page-layout">
+        <!-- 主卡片容器 -->
+        <div class="w-full max-w-sm glass-card rounded-[2.8rem] px-8 py-10 text-center text-white relative z-10 animate-entrance">
+            
+            <!-- Company Logo 與 Company Name -->
+            <div class="mb-2 fade-in-up delay-1">
+                <div class="w-90 h-24 mx-auto flex items-center justify-center overflow-hidden opacity-90 transition-transform duration-500 hover:scale-105">
+                    <img src="logo.png" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <h2 class="text-[11px] uppercase tracking-[0.25em] text-gray-200 font-extralight -mt-2">GroovyHouse Limited</h2>
             </div>
-            <h2 class="text-[11px] uppercase tracking-[0.25em] text-gray-200 font-extralight -mt-2">GroovyHouse Limited</h2>
-        </div>
 
-        <!-- 兩端自然收尖嘅半透明白線 -->
-        <div class="sharp-divider fade-in-up delay-2"></div>
+            <!-- 兩端自然收尖嘅半透明白線 -->
+            <div class="sharp-divider fade-in-up delay-2"></div>
 
-       <!-- 姓名與 Job Title -->
+             <!-- 姓名與 Job Title -->
         <div class="mb-6 fade-in-up delay-3">
             <h1 class="text-2xl font-light tracking-wide text-white mb-0.5">CM Lee</h1>
             <h2 class="text-sm font-light tracking-wider text-gray-300 mb-2">CMgroovy</h2>
@@ -134,47 +136,48 @@
             </div>
         </div>
 
-        <!-- 按鈕群組 -->
-        <div class="space-y-4 mb-8">
-            <!-- 3個圓形 Icon 按鈕並排置中 -->
-            <div class="flex items-center justify-center gap-4 mb-7 fade-in-up delay-4">
-                <!-- WhatsApp Icon -->
-                <a href="https://wa.me/85293084301" target="_blank" title="WhatsApp"
-                   class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-emerald-600 text-white text-xl rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-emerald-500/30">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
+            <!-- 按鈕群組 -->
+            <div class="space-y-4 mb-8">
+                <!-- 3個圓形 Icon 按鈕並排置中 -->
+                <div class="flex items-center justify-center gap-4 mb-7 fade-in-up delay-4">
+                    <!-- WhatsApp Icon -->
+                    <a href="https://wa.me/85293084301" target="_blank" title="WhatsApp"
+                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-emerald-600 text-white text-xl rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-emerald-500/30">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
 
-                <!-- Call Icon -->
-                <a href="tel:+85293084301" title="Call"
-                   class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/25 text-white text-lg rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-white/20">
-                    <i class="fa-solid fa-phone"></i>
-                </a>
+                    <!-- Call Icon -->
+                    <a href="tel:+85293084301" title="Call"
+                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/25 text-white text-lg rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-white/20">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
 
-                <!-- Email Icon -->
-                <a href="mailto:cm@groovyhousecreative.com" title="Email"
-                   class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/25 text-white text-lg rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-white/20">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
+                    <!-- Email Icon -->
+                    <a href="mailto:cm@groovyhousecreative.com" title="Email"
+                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/25 text-white text-lg rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-white/20">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+
+                <!-- 下方：Our Portfolio 按鈕與 vCard 按鈕 -->
+                <div class="space-y-3.5 fade-in-up delay-5">
+                    <!-- Our Portfolio 連結 -->
+                    <a href="portfolio.pdf" target="_blank" 
+                       class="w-full py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-xs font-light tracking-wide rounded-2xl transition-all duration-300 shadow-md hover:scale-[1.02] flex items-center justify-center gap-2 border border-white/10">
+                        <i class="fa-solid fa-file-lines text-sm"></i> Our Portfolio
+                    </a>
+
+                    <!-- 儲存聯絡人按鈕 (vCard) -->
+                    <button onclick="downloadVCard()" 
+                            class="w-full py-3.5 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white text-xs font-light tracking-wide rounded-2xl transition-all duration-300 shadow-md hover:scale-[1.02] flex items-center justify-center gap-2 border border-white/10">
+                        <i class="fa-solid fa-address-book text-sm"></i> Save Contact
+                    </button>
+                </div>
             </div>
 
-            <!-- 下方：Our Portfolio 按鈕與 vCard 按鈕 -->
-            <div class="space-y-3.5 fade-in-up delay-5">
-                <!-- Our Portfolio 連結 -->
-                <a href="portfolio.pdf" target="_blank" 
-                   class="w-full py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-xs font-light tracking-wide rounded-2xl transition-all duration-300 shadow-md hover:scale-[1.02] flex items-center justify-center gap-2 border border-white/10">
-                    <i class="fa-solid fa-file-lines text-sm"></i> Our Portfolio
-                </a>
-
-                <!-- 儲存聯絡人按鈕 (vCard) -->
-                <button onclick="downloadVCard()" 
-                        class="w-full py-3.5 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white text-xs font-light tracking-wide rounded-2xl transition-all duration-300 shadow-md hover:scale-[1.02] flex items-center justify-center gap-2 border border-white/10">
-                    <i class="fa-solid fa-address-book text-sm"></i> Save Contact
-                </button>
-            </div>
+            <!-- 頁尾版權 -->
+            <p class="text-[10px] text-gray-400 font-extralight tracking-widest fade-in-up delay-5">© 2026 GroovyHouse Ltd. All Rights Reserved.</p>
         </div>
-
-        <!-- 頁尾版權 -->
-        <p class="text-[10px] text-gray-400 font-extralight tracking-widest fade-in-up delay-5">© 2026 GroovyHouse Ltd. All Rights Reserved.</p>
     </div>
 
     <!-- JavaScript -->
