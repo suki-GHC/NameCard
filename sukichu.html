@@ -11,12 +11,13 @@
     <!-- 引入 Google Fonts: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
-        body {
+        body, html {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
             margin: 0;
             padding: 0;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
             background-color: #0b0b0b;
         }
@@ -26,10 +27,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            width: 100vw;
+            height: 100vh;
             padding: 1rem;
             position: relative;
             z-index: 2;
+            box-sizing: border-box;
         }
 
         /* 黑色半透明遮罩 */
@@ -43,13 +46,13 @@
             z-index: 1;
         }
         
-        /* 背景圖片設定區域（放大並獨立做流動動畫，不影響卡片） */
+        /* 強制 Full Screen 背景容器與流動動畫 */
         .bg-image-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
             overflow: hidden;
         }
@@ -61,10 +64,10 @@
             position: absolute;
             top: -15%;
             left: -15%;
-            animation: gradientMotion 4s ease-in-out infinite alternate;
+            animation: gradientMotion 8s ease-in-out infinite alternate;
         }
 
-        /* 背景流動與呼吸動畫（卡片完全唔會受呢個影響） */
+        /* 背景流動與呼吸動畫特效 */
         @keyframes gradientMotion {
             0% {
                 transform: scale(1) translate(0px, 0px);
@@ -73,11 +76,11 @@
                 transform: scale(1.06) translate(-15px, -10px);
             }
             100% {
-                transform: scale(1.02) translate(10px, 15px);
+                transform: scale(1) translate(10px, 15px);
             }
         }
 
-        /* 玻璃擬態卡片（保持靜態，只有初次登場動畫，絕不呼吸） */
+        /* 玻璃擬態卡片（保持完全企定，絕不呼吸） */
         .glass-card {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(18px);
@@ -95,7 +98,7 @@
             margin: 24px auto 24px auto; 
         }
 
-        /* 卡片整體彈入動畫（只在打開網頁時發生一次，之後保持企定） */
+        /* 卡片整體彈入動畫 */
         @keyframes cardEntrance {
             from { opacity: 0; transform: translateY(20px) scale(0.96); }
             to { opacity: 1; transform: translateY(0) scale(1); }
@@ -127,9 +130,9 @@
 </head>
 <body class="relative">
 
-    <!-- 背景容器 -->
+    <!-- 背景容器 (強制 100vw / 100vh Full Screen) -->
     <div class="bg-image-container">
-        <img src="bg.png" alt="Background Image">
+        <img src="bg.jpg" alt="Background Image"[cite: 2]>
         <div class="bg-overlay"></div>
     </div>
 
