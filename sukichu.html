@@ -18,7 +18,7 @@
             padding: 0;
             height: 100vh;
             overflow: hidden;
-            background-color: #040814;
+            background-color: #040814; /* 底層深藍夜空色 */
         }
 
         /* 頁面排版容器 */
@@ -30,7 +30,7 @@
             padding: 1rem;
         }
 
-        /* 流動背景容器 */
+        /* 4個精緻動態光暈背景容器 */
         .css-bg-container {
             position: fixed;
             top: 0;
@@ -42,60 +42,77 @@
             background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
         }
 
-        /* 3個大尺寸動態光暈：加入 will-change 與 translate3d 確保手機完美順暢郁動 */
+        /* 光暈 1：右上角主藍色光暈（中小型尺寸，明顯流動） */
         .glow-orb-1 {
             position: absolute;
-            top: -10%;
-            right: -10%;
-            width: 115vw;
-            height: 115vw;
-            background: radial-gradient(circle, rgba(0, 140, 255, 0.8) 0%, rgba(0, 70, 220, 0.35) 50%, transparent 75%);
+            top: 5%;
+            right: 5%;
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, rgba(0, 130, 255, 0.7) 0%, rgba(0, 70, 200, 0.3) 50%, transparent 75%);
             border-radius: 50%;
-            filter: blur(60px);
-            will-change: transform;
-            animation: floatOrb1 8s ease-in-out infinite alternate;
+            filter: blur(45px);
+            animation: floatOrb1 5s ease-in-out infinite alternate;
         }
 
+        /* 光暈 2：左下角深藍色光暈（明顯位移與旋轉） */
         .glow-orb-2 {
             position: absolute;
-            bottom: -10%;
-            left: -10%;
-            width: 120vw;
-            height: 120vw;
-            background: radial-gradient(circle, rgba(14, 95, 230, 0.75) 0%, rgba(4, 30, 110, 0.35) 50%, transparent 80%);
+            bottom: 5%;
+            left: 5%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(14, 85, 210, 0.65) 0%, rgba(4, 30, 100, 0.3) 50%, transparent 80%);
             border-radius: 50%;
-            filter: blur(65px);
-            will-change: transform;
-            animation: floatOrb2 10s ease-in-out infinite alternate;
+            filter: blur(50px);
+            animation: floatOrb2 6s ease-in-out infinite alternate;
         }
 
+        /* 光暈 3：左上角靛藍流動光暈 */
         .glow-orb-3 {
             position: absolute;
-            top: 20%;
-            left: 20%;
-            width: 110vw;
-            height: 110vw;
-            background: radial-gradient(circle, rgba(40, 120, 255, 0.75) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(30, 100, 240, 0.6) 0%, transparent 70%);
             border-radius: 50%;
-            filter: blur(60px);
-            will-change: transform;
-            animation: floatOrb3 7s ease-in-out infinite alternate;
+            filter: blur(45px);
+            animation: floatOrb3 4.5s ease-in-out infinite alternate;
         }
 
-        /* Motion 動畫設定 (強制 GPU 渲染) */
+        /* 光暈 4：右下角亮藍色光暈 */
+        .glow-orb-4 {
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            width: 42vw;
+            height: 42vw;
+            background: radial-gradient(circle, rgba(0, 110, 255, 0.65) 0%, rgba(10, 40, 120, 0.2) 60%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(45px);
+            animation: floatOrb4 5.5s ease-in-out infinite alternate;
+        }
+
+        /* 動畫設定：大幅增強郁動幅度、位移與旋轉，肉眼非常顯眼 */
         @keyframes floatOrb1 {
-            0% { transform: translate3d(0, 0, 0) scale(0.9) rotate(0deg); }
-            100% { transform: translate3d(-18vw, 18vh, 0) scale(1.2) rotate(15deg); }
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(-18%, 20%) scale(1.3) rotate(20deg); }
         }
 
         @keyframes floatOrb2 {
-            0% { transform: translate3d(0, 0, 0) scale(0.95) rotate(0deg); }
-            100% { transform: translate3d(18vw, -18vh, 0) scale(1.15) rotate(-18deg); }
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(22%, -18%) scale(1.25) rotate(-25deg); }
         }
 
         @keyframes floatOrb3 {
-            0% { transform: translate3d(0, 0, 0) scale(0.85) rotate(0deg); }
-            100% { transform: translate3d(20vw, 16vh, 0) scale(1.25) rotate(20deg); }
+            0% { transform: translate(0, 0) scale(0.9) rotate(0deg); }
+            100% { transform: translate(25%, 22%) scale(1.35) rotate(30deg); }
+        }
+
+        @keyframes floatOrb4 {
+            0% { transform: translate(0, 0) scale(1.1) rotate(0deg); }
+            100% { transform: translate(-22%, -22%) scale(0.85) rotate(-20deg); }
         }
 
         /* 玻璃擬態卡片 */
@@ -148,11 +165,12 @@
 </head>
 <body class="relative">
 
-    <!-- 3個動態光暈背景層 -->
+    <!-- 4個動態光暈背景層 -->
     <div class="css-bg-container">
         <div class="glow-orb-1"></div>
         <div class="glow-orb-2"></div>
         <div class="glow-orb-3"></div>
+        <div class="glow-orb-4"></div>
     </div>
 
     <!-- 頁面排版容器 -->
