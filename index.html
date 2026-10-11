@@ -22,6 +22,7 @@
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-weight: 300;
             overflow: hidden; /* 防止背景動畫放大時出現捲軸 */
+            background-color: #0b0b0b;
         }
 
         /* 背景設定 (已加入呼吸流動光影動畫) */
@@ -38,7 +39,7 @@
             align-items: center;
             text-align: center;
             position: relative;
-            animation: gradientMotion 18s ease-in-out infinite alternate; /* 18秒循環嘅柔和呼吸流動特效 */
+            animation: gradientMotion 6s ease-in-out infinite alternate; /* 6秒循環嘅柔和呼吸流動特效 */
         }
 
         /* 背景流動與呼吸動畫特效 */
@@ -112,17 +113,20 @@
             }
         }
 
-        /* 底部版權宣告細字 */
+        /* 底部版權宣告細字（獨立固定喺最底層，絕對唔會跟住背景 scale 郁動） */
         .footer-copy {
-            position: absolute;
-            bottom: 30px;
-            z-index: 2;
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
             color: #FFFFFF;
             font-size: 10px;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
             letter-spacing: 1px;
             text-transform: none;
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -137,11 +141,11 @@
                 <h2>COMING SOON</h2>
             </div>
         </div>
+    </div>
 
-        <!-- 底部版權宣告 -->
-        <div class="footer-copy">
-            © 2026 GroovyHouse Ltd. All Rights Reserved.
-        </div>
+    <!-- 底部版權宣告（已移出 bg-container，實行獨立固定） -->
+    <div class="footer-copy">
+        © 2026 GroovyHouse Ltd. All Rights Reserved.
     </div>
 
 </body>
