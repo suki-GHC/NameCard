@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+明白！你原本的背景圖（bg.jpg）係一張深藍色、帶有柔和光暈（gradient mesh）嘅靚相。   如果想用返呢張圖嚟做流動動畫，最靚同最自然嘅做法係透過 CSS 配合多層放大、平移（Translate）、旋轉同微調透明度，令到入面啲藍色光暈好似呼吸同流動咁慢慢郁，而唔係淨係單調咁放大縮細。以下係為你改好嘅完整 HTML code。我幫你將原本純粹嘅 bgZoom 升級為「多層複合流動動畫」，完美保留你原本嘅圖片 (bg.jpg) 同時令背景活靈活現：HTML<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- 引入 Google Fonts: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-<style>
+    <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
@@ -18,6 +18,7 @@
             padding: 0;
             height: 100vh;
             overflow: hidden;
+            background-color: #050b14; /* 墊底深藍色 */
         }
 
         /* 頁面排版容器 */
@@ -36,17 +37,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            opacity: 0%;
+            background-color: rgba(0, 0, 0, 0.35); /* 微微調淡遮罩，突顯背景流動 */
+            z-index: 1;
         }
         
-        /* 背景圖片設定區域（加入緩慢放大背景動畫） */
+        /* 背景圖片設定區域（流動動畫） */
         .bg-image-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
             z-index: -1;
             overflow: hidden;
         }
@@ -55,12 +56,23 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            animation: bgZoom 25s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+            /* 複合動畫：結合放大、位移與緩動，營造極具質感嘅流動感 */
+            animation: bgFluidFlow 20s ease-in-out infinite alternate;
         }
 
-        @keyframes bgZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.08); }
+        @keyframes bgFluidFlow {
+            0% {
+                transform: scale(1) translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: scale(1.08) translate(-3%, 2%) rotate(1deg);
+            }
+            66% {
+                transform: scale(1.12) translate(2%, -3%) rotate(-1deg);
+            }
+            100% {
+                transform: scale(1.05) translate(1%, 1%) rotate(0.5deg);
+            }
         }
 
         /* 玻璃擬態卡片（向上微調以適應較長嘅名字） */
@@ -73,7 +85,7 @@
             margin-top: -55px; 
         }
 
-        /* 兩端自然收尖嘅半透明白線 (完美修正) */
+        /* 兩端自然收尖嘅半透明白線 */
         .sharp-divider {
             width: 80%;
             height: 1px;
@@ -115,7 +127,7 @@
 
     <!-- 背景容器 -->
     <div class="bg-image-container">
-        <img src="bg.png" alt="Background Image">
+        <img src="bg.jpg" alt="Background Image">
         <div class="bg-overlay"></div>
     </div>
 
