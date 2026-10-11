@@ -42,7 +42,7 @@
             background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
         }
 
-        /* 3個大尺寸動態光暈：保持大尺寸、高質感與悠長優雅速度 */
+        /* 3個大尺寸動態光暈：加入 will-change 與 translate3d 確保手機完美順暢郁動 */
         .glow-orb-1 {
             position: absolute;
             top: -10%;
@@ -53,7 +53,7 @@
             border-radius: 50%;
             filter: blur(60px);
             will-change: transform;
-            animation: floatOrb1 18s ease-in-out infinite alternate;
+            animation: floatOrb1 8s ease-in-out infinite alternate;
         }
 
         .glow-orb-2 {
@@ -66,7 +66,7 @@
             border-radius: 50%;
             filter: blur(65px);
             will-change: transform;
-            animation: floatOrb2 22s ease-in-out infinite alternate;
+            animation: floatOrb2 10s ease-in-out infinite alternate;
         }
 
         .glow-orb-3 {
@@ -79,10 +79,10 @@
             border-radius: 50%;
             filter: blur(60px);
             will-change: transform;
-            animation: floatOrb3 16s ease-in-out infinite alternate;
+            animation: floatOrb3 7s ease-in-out infinite alternate;
         }
 
-        /* 悠長平緩嘅 Motion */
+        /* Motion 動畫設定 (強制 GPU 渲染) */
         @keyframes floatOrb1 {
             0% { transform: translate3d(0, 0, 0) scale(0.9) rotate(0deg); }
             100% { transform: translate3d(-18vw, 18vh, 0) scale(1.2) rotate(15deg); }
