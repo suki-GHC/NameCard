@@ -25,7 +25,7 @@
             background-color: #0b0b0b;
         }
 
-        /* 專門負責動態流動嘅背景圖片容器（強制手機 GPU 硬件加速） */
+        /* 專門負責動態流動嘅背景圖片容器（手機與電腦速度完全同步） */
         .bg-image-container {
             position: fixed;
             top: 0;
@@ -43,19 +43,19 @@
             position: absolute;
             top: -15%;
             left: -15%;
-            animation: gradientMotion 6s ease-in-out infinite alternate;
+            animation: gradientMotion 6s ease-in-out infinite alternate; /* 手機與電腦統一為 6 秒流動速度 */
         }
 
-        /* 手機同電腦都100%有效嘅流動與呼吸動畫 */
+        /* 手機與電腦完全一致嘅流動與呼吸動畫特效 */
         @keyframes gradientMotion {
             0% {
                 transform: scale(1) translate(0px, 0px);
             }
             50% {
-                transform: scale(1.05) translate(-15px, -10px);
+                transform: scale(1.04) translate(-15px, -10px);
             }
             100% {
-                transform: scale(1.02) translate(10px, 15px);
+                transform: scale(1) translate(10px, 15px);
             }
         }
 
@@ -113,7 +113,7 @@
             }
         }
 
-        /* 底部版權宣告細字（獨立固定喺最底層，絕對唔會跟住背景郁） */
+        /* 底部版權宣告（獨立固定喺畫面最底層，絕對不隨背景縮放或郁動） */
         .footer-copy {
             position: fixed;
             bottom: 25px;
@@ -132,11 +132,12 @@
 </head>
 <body>
 
-    <!-- 獨立動態背景圖片層（手機與電腦同步流動） -->
+    <!-- 動態背景圖片層 -->
     <div class="bg-image-container">
         <img src="bg_landingPage.png" alt="Background Image">
     </div>
 
+    <!-- 內容容器 -->
     <div class="bg-container">
         <div class="content">
             <div class="logo">
@@ -148,7 +149,7 @@
         </div>
     </div>
 
-    <!-- 底部版權宣告（獨立固定） -->
+    <!-- 底部版權宣告（完全獨立於背景之外，保證企定唔郁） -->
     <div class="footer-copy">
         © 2026 GroovyHouse Ltd. All Rights Reserved.
     </div>
