@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- 引入 Google Fonts: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <!-- 引入 QRCode.js 用於自動生成 QR Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -162,6 +164,32 @@
                 transform: translateY(0);
             }
         }
+
+        /* Toast 提示樣式 */
+        #toast {
+            visibility: hidden;
+            min-width: 220px;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            text-align: center;
+            border-radius: 9999px;
+            padding: 12px 20px;
+            position: fixed;
+            z-index: 999;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 13px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: opacity 0.3s, visibility 0.3s;
+            opacity: 0;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="relative">
@@ -199,7 +227,7 @@
             </div>
 
             <!-- 按鈕群組 -->
-            <div class="space-y-4 mb-8">
+            <div class="space-y-4 mb-6">
                 <!-- 3個圓形 Icon 按鈕並排置中 -->
                 <div class="flex items-center justify-center gap-4 mb-7 fade-in-up delay-4">
                     <!-- WhatsApp Icon -->
@@ -237,13 +265,99 @@
                 </div>
             </div>
 
+            <!-- Save Contact 下面嘅淨 Icon（QR Code & Share 節點）無框、細細粒 -->
+            <div class="flex items-center justify-center gap-6 mb-4 fade-in-up delay-5 text-white/70">
+                <button onclick="openQRCodeModal()" class="hover:text-white transition-colors text-base p-1" title="Show QR Code">
+                    <i class="fa-solid fa-qrcode"></i>
+                </button>
+                <span class="text-white/20">|</span>
+                <button onclick="shareCard()" class="hover:text-white transition-colors text-base p-1" title="Share Card">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+            </div>
+
             <!-- 頁尾版權 -->
             <p class="text-[10px] text-gray-400 font-extralight tracking-widest fade-in-up delay-5">© 2026 GroovyHouse Ltd. All Rights Reserved.</p>
         </div>
     </div>
 
+    <!-- QR Code Popup Modal -->
+    <div id="qrModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeQRCodeModal()">
+        <div class="glass-card bg-[#0b1329]/90 border border-white/20 rounded-[2.5rem] p-8 text-center max-w-xs w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
+            <h3 class="text-sm font-light uppercase tracking-widest text-white mb-6">Scan QR Code</h3>
+            <div id="qrcode" class="bg-white p-4 rounded-2xl inline-block mb-6 shadow-inner flex justify-center"></div>
+            <p class="text-xs text-gray-300 font-light mb-6">Point your camera at the QR code to view this digital business card.</p>
+            <button onclick="closeQRCodeModal()" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white text-xs font-light tracking-wide rounded-2xl transition-all border border-white/15">Close</button>
+        </div>
+    </div>
+
+    <!-- Toast 提示訊息框 -->
+    <div id="toast">Link copied to clipboard!</div>
+
     <!-- JavaScript -->
     <script>
+        // 自動生成 QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: "https://groovyhousecreative.com/yannpoon.html",
+            width: 180,
+            height: 180,
+            colorDark: "#040814",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        function openQRCodeModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('.glass-card').classList.remove('scale-95');
+        }
+
+        function closeQRCodeModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('.glass-card').classList.add('scale-95');
+        }
+
+        function shareCard() {
+            const shareText = `Here is my digital business card and contact info:\nhttps://groovyhousecreative.com/yannpoon.html\nLooking forward to staying in touch!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Yann Poon | Creative Strategist',
+                    text: shareText,
+                }).catch(() => {
+                    copyToClipboard(shareText);
+                });
+            } else {
+                copyToClipboard(shareText);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Link and message copied!");
+            }).catch(() => {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast("Link and message copied!");
+                } catch (err) {
+                    showToast("Failed to copy");
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
         function downloadVCard() {
             const vCardData = 
 `BEGIN:VCARD
