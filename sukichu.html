@@ -42,7 +42,7 @@
             background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
         }
 
-        /* 4個動態光暈：進一步加大尺寸（110vw - 120vw），保持 desktop 悠長優雅速度 */
+        /* 3個大尺寸動態光暈：保持大尺寸、高質感與悠長優雅速度 */
         .glow-orb-1 {
             position: absolute;
             top: -10%;
@@ -71,8 +71,8 @@
 
         .glow-orb-3 {
             position: absolute;
-            top: -5%;
-            left: -5%;
+            top: 20%;
+            left: 20%;
             width: 110vw;
             height: 110vw;
             background: radial-gradient(circle, rgba(40, 120, 255, 0.75) 0%, transparent 70%);
@@ -80,19 +80,6 @@
             filter: blur(60px);
             will-change: transform;
             animation: floatOrb3 16s ease-in-out infinite alternate;
-        }
-
-        .glow-orb-4 {
-            position: absolute;
-            bottom: -5%;
-            right: -5%;
-            width: 112vw;
-            height: 112vw;
-            background: radial-gradient(circle, rgba(0, 120, 255, 0.8) 0%, rgba(10, 40, 130, 0.25) 60%, transparent 80%);
-            border-radius: 50%;
-            filter: blur(60px);
-            will-change: transform;
-            animation: floatOrb4 20s ease-in-out infinite alternate;
         }
 
         /* 悠長平緩嘅 Motion */
@@ -109,11 +96,6 @@
         @keyframes floatOrb3 {
             0% { transform: translate3d(0, 0, 0) scale(0.85) rotate(0deg); }
             100% { transform: translate3d(20vw, 16vh, 0) scale(1.25) rotate(20deg); }
-        }
-
-        @keyframes floatOrb4 {
-            0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
-            100% { transform: translate3d(-18vw, -18vh, 0) scale(0.9) rotate(-15deg); }
         }
 
         /* 玻璃擬態卡片 */
@@ -166,12 +148,11 @@
 </head>
 <body class="relative">
 
-    <!-- 4個動態光暈背景層 -->
+    <!-- 3個動態光暈背景層 -->
     <div class="css-bg-container">
         <div class="glow-orb-1"></div>
         <div class="glow-orb-2"></div>
         <div class="glow-orb-3"></div>
-        <div class="glow-orb-4"></div>
     </div>
 
     <!-- 頁面排版容器 -->
