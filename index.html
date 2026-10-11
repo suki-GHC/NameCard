@@ -21,12 +21,13 @@
             height: 100%;
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-weight: 300;
+            overflow: hidden; /* 防止背景動畫放大時出現捲軸 */
         }
 
-        /* 背景設定 */
+        /* 背景設定 (已加入呼吸流動光影動畫) */
         .bg-container {
             background-image: url('bg_landingPage.png');
-            background-size: cover;
+            background-size: 125% 125%; /* 放大背景以留出空間俾動畫流動 */
             background-position: center;
             background-repeat: no-repeat;
             background-color: #0b0b0b;
@@ -37,6 +38,23 @@
             align-items: center;
             text-align: center;
             position: relative;
+            animation: gradientMotion 18s ease-in-out infinite alternate; /* 18秒循環嘅柔和呼吸流動特效 */
+        }
+
+        /* 背景流動與呼吸動畫特效 */
+        @keyframes gradientMotion {
+            0% {
+                background-position: 0% 40%;
+                transform: scale(1);
+            }
+            50% {
+                background-position: 100% 60%;
+                transform: scale(1.04); /* 輕微呼吸放大 */
+            }
+            100% {
+                background-position: 50% 100%;
+                transform: scale(1);
+            }
         }
 
         /* 半透明黑色遮罩 */
@@ -63,7 +81,7 @@
             max-width: 300px; /* 手機版 Logo 大小 */
             width: 100%;
             height: auto;
-            margin-bottom: 0.8rem; /* 👈 縮短手機版 Logo 同 Coming Soon 之間嘅距離，讓兩者痴埋少少 */
+            margin-bottom: 0.8rem; /* 手機版 Logo 同 Coming Soon 之間嘅距離 */
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -85,7 +103,7 @@
         @media (min-width: 768px) {
             .logo img {
                 max-width: 800px;  /* 電腦版 Logo 大小 */
-                margin-bottom: 2.5rem; /* 👈 電腦版還原比較寬裕嘅距離 */
+                margin-bottom: 2.5rem; /* 電腦版寬裕距離 */
             }
             .coming-soon h2 {
                 font-size: 1.8rem; /* 電腦版還原大字 */
