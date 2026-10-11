@@ -25,26 +25,32 @@
             background-color: #040814;
         }
 
-        /* 簡單直接嘅全版 CSS 藍調流動背景 */
+        /* 快速流動嘅專屬藍調漸層背景 */
         .page-container {
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, #040814 0%, #0d2247 50%, #0055ff 100%);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, #e9fcff 0%, #2ecaf1 50%, #24419c 100%);
+            background-size: 300% 300%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             overflow: hidden;
-            animation: smoothGradient 10s ease infinite;
+            animation: fastFlowGradient 3s ease-in-out infinite alternate;
         }
 
-        /* 背景流動變色動畫 */
-        @keyframes smoothGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* 高速流動變色動畫（3秒極速循環） */
+        @keyframes fastFlowGradient {
+            0% {
+                background-position: 0% 20%;
+            }
+            50% {
+                background-position: 100% 80%;
+            }
+            100% {
+                background-position: 50% 100%;
+            }
         }
 
         /* 中間內容區（Logo + Coming Soon） */
@@ -72,7 +78,8 @@
             text-transform: uppercase;
             margin: 0;
             font-weight: 300;
-            opacity: 0.9;
+            opacity: 0.95;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* 桌面版放大調整 */
@@ -84,21 +91,21 @@
             .coming-soon h2 {
                 font-size: 1.8rem;
                 letter-spacing: 8px;
-                opacity: 1;
             }
         }
 
-        /* 底部 Copyright：直接自然排版喺下面，絕對唔會亂飛 */
+        /* 底部 Copyright */
         .footer-copy {
             position: absolute;
             bottom: 25px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             font-size: 10px;
             letter-spacing: 1px;
             z-index: 2;
             white-space: nowrap;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
