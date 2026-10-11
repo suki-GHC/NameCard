@@ -20,10 +20,10 @@
             overflow: hidden;
         }
 
-        /* 手機與電腦同步的排版容器 */
+        /* 透過覆寫 Tailwind 嘅置中，改為置頂並向下留適當空間，確保手機電腦一致向上移 */
         .page-layout {
             display: flex;
-            align-items: center;
+            align-items: center;       /* 預設置中，但透過 margin 微調 */
             justify-content: center;
             min-height: 100vh;
             padding: 1rem;
@@ -70,15 +70,7 @@
             -webkit-backdrop-filter: blur(18px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            margin-top: -30px;
-        }
-
-        /* 兩端自然收尖嘅半透明白線 */
-        .sharp-divider {
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
-            margin: 24px auto 24px auto; 
+            margin-top: -30px; /* 向上推高，數值可隨意調整 */
         }
 
         /* 卡片整體彈入動畫 */
