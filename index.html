@@ -60,10 +60,10 @@
 
         /* === Logo 大小設定 (手機版 vs 電腦版) === */
         .logo img {
-            max-width: 300px; /* 手機版 Logo 縮小配合 */
+            max-width: 300px; /* 手機版 Logo 大小 */
             width: 100%;
             height: auto;
-            margin-bottom: 1.8rem;
+            margin-bottom: 0.8rem; /* 👈 縮短手機版 Logo 同 Coming Soon 之間嘅距離，讓兩者痴埋少少 */
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -73,8 +73,8 @@
         .coming-soon h2 {
             font-family: 'GrandCru', sans-serif;
             color: #ffffff;
-            font-size: 1.1rem;     /* 預設手機版字體調得好細緻、俐落 */
-            letter-spacing: 4px;   /* 手機版字距相應收窄 */
+            font-size: 1.1rem;     /* 預設手機版字體大小 */
+            letter-spacing: 4px;   /* 手機版字距 */
             text-transform: uppercase;
             margin: 0;
             font-weight: 300;
@@ -84,8 +84,8 @@
         /* 當螢幕闊度大於 768px（即平版同電腦 Desktop）時生效 */
         @media (min-width: 768px) {
             .logo img {
-                max-width: 380px;  /* 電腦版維持大器尺寸 */
-                margin-bottom: 2.5rem;
+                max-width: 380px;  /* 電腦版 Logo 大小 */
+                margin-bottom: 2.5rem; /* 👈 電腦版還原比較寬裕嘅距離 */
             }
             .coming-soon h2 {
                 font-size: 2.5rem; /* 電腦版還原大字 */
@@ -99,7 +99,7 @@
             position: absolute;
             bottom: 30px;
             z-index: 2;
-            color: #888888;
+            color: #FFFFFF;
             font-size: 10px;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
