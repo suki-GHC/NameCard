@@ -20,10 +20,10 @@
             overflow: hidden;
         }
 
-        /* 透過覆寫 Tailwind 嘅置中，改為置頂並向下留適當空間，確保手機電腦一致向上移 */
+        /* 頁面排版容器 */
         .page-layout {
             display: flex;
-            align-items: center;       /* 預設置中，但透過 margin 微調 */
+            align-items: center;
             justify-content: center;
             min-height: 100vh;
             padding: 1rem;
@@ -63,14 +63,22 @@
             to { transform: scale(1.08); }
         }
 
-        /* 玻璃擬態卡片（加上輕微向上偏移，手機電腦同步） */
+        /* 玻璃擬態卡片（因為內容較長，將 margin-top 調整為 -55px 讓視覺重新置中向上） */
         .glass-card {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            margin-top: -30px; /* 向上推高，數值可隨意調整 */
+            margin-top: -55px; 
+        }
+
+        /* 兩端自然收尖嘅半透明白線 */
+        .sharp-divider {
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+            margin: 24px auto 24px auto; 
         }
 
         /* 卡片整體彈入動畫 */
@@ -127,14 +135,14 @@
             <!-- 兩端自然收尖嘅半透明白線 -->
             <div class="sharp-divider fade-in-up delay-2"></div>
 
-             <!-- 姓名與 Job Title -->
-        <div class="mb-6 fade-in-up delay-3">
-            <h1 class="text-2xl font-light tracking-wide text-white mb-0.5">CM Lee</h1>
-            <h2 class="text-sm font-light tracking-wider text-gray-300 mb-2">CMgroovy</h2>
-            <div class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 text-xs font-light tracking-widest backdrop-blur-sm transition-all duration-300 hover:bg-white/20">
-                Music Director, Producer
+            <!-- 姓名與 Job Title -->
+            <div class="mb-6 fade-in-up delay-3">
+                <h1 class="text-2xl font-light tracking-wide text-white mb-0.5">CM Lee</h1>
+                <h2 class="text-sm font-light tracking-wider text-gray-300 mb-2">CMgroovy</h2>
+                <div class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 text-xs font-light tracking-widest backdrop-blur-sm transition-all duration-300 hover:bg-white/20">
+                    Music Director, Producer
+                </div>
             </div>
-        </div>
 
             <!-- 按鈕群組 -->
             <div class="space-y-4 mb-8">
@@ -188,7 +196,7 @@
 VERSION:3.0
 N:CMGroovy;CM Lee;;;
 FN:CM Lee CMGroovy
-TITLE:Music DIrector, Producer
+TITLE:Music Director, Producer
 ORG:GroovyHouse Creative
 TEL;TYPE=CELL:+85293084301
 EMAIL:cm@groovyhousecreative.com
