@@ -130,6 +130,13 @@
             margin-top: -55px; 
         }
 
+        /* 📱 PWA 獨立 App 模式專用修正：當用家真係由桌面 App 模式打開時，消除負 Margin，讓卡片在全螢幕中絕對置中 */
+        @media all and (display-mode: standalone) {
+            .glass-card {
+                margin-top: 0 !important;
+            }
+        }
+        
         /* 兩端自然收尖嘅半透明白線 */
         .sharp-divider {
             width: 80%;
