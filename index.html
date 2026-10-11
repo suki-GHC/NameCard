@@ -25,36 +25,12 @@
             background-color: #0b0b0b;
         }
 
-        /* 獨立嘅 CSS 背景圖層，確保圖片 100% 正常顯示並流動 */
-        .bg-animated {
-            position: fixed;
-            top: -10%;
-            left: -10%;
-            width: 120%;
-            height: 120%;
-            z-index: -1;
+        /* 背景設定：將背景圖用最穩陣嘅 background-image 寫法，確保絕對唔會變黑 */
+        .bg-container {
             background-image: url('bg_landingPage.png');
-            background-size: cover;
+            background-size: 130% 130%; /* 放大背景以留出空間俾動畫流動 */
             background-position: center;
             background-repeat: no-repeat;
-            animation: gradientMotion 6s ease-in-out infinite alternate;
-        }
-
-        /* 手機與電腦完全同步嘅呼吸流動動畫 */
-        @keyframes gradientMotion {
-            0% {
-                transform: scale(1) translate(0px, 0px);
-            }
-            50% {
-                transform: scale(1.05) translate(-10px, -10px);
-            }
-            100% {
-                transform: scale(1.02) translate(10px, 10px);
-            }
-        }
-
-        /* 內容置中容器 */
-        .bg-container {
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -62,10 +38,39 @@
             align-items: center;
             text-align: center;
             position: relative;
-            z-index: 2;
+            animation: gradientMotion 6s ease-in-out infinite alternate; /* 手機電腦同步嘅 6秒流動速度 */
+        }
+
+        /* 手機與電腦同步嘅呼吸流動動畫特效 */
+        @keyframes gradientMotion {
+            0% {
+                background-position: 45% 45%;
+                transform: scale(1);
+            }
+            50% {
+                background-position: 55% 55%;
+                transform: scale(1.05); /* 輕微呼吸放大 */
+            }
+            100% {
+                background-position: 50% 50%;
+                transform: scale(1.02);
+            }
+        }
+
+        /* 半透明黑色遮罩 */
+        .bg-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            z-index: 1;
         }
 
         .content {
+            z-index: 2;
             padding: 20px;
             max-width: 700px;
             width: 100%;
@@ -107,7 +112,7 @@
             }
         }
 
-        /* 底部版權宣告細字（獨立固定喺最底層，絕對不隨背景縮放或郁動） */
+        /* 底部版權宣告細字：獨立固定喺最底層，絕對不隨背景縮放或郁動 */
         .footer-copy {
             position: fixed;
             bottom: 25px;
@@ -126,9 +131,6 @@
 </head>
 <body>
 
-    <!-- 獨立嘅 CSS 背景圖層 -->
-    <div class="bg-animated"></div>
-
     <div class="bg-container">
         <div class="content">
             <div class="logo">
@@ -140,7 +142,7 @@
         </div>
     </div>
 
-    <!-- 底部版權宣告（完全獨立於背景之外，保證企定唔郁） -->
+    <!-- 底部版權宣告（獨立固定喺最底，保證企定唔郁、唔會跟住 scale） -->
     <div class="footer-copy">
         © 2026 GroovyHouse Ltd. All Rights Reserved.
     </div>
