@@ -1,12 +1,3 @@
-呢個情況真係好典型！好多時手機版（特別係 iOS Safari 或者部分 Android 瀏覽器）對於用绝对定位（position: absolute）加埋 filter: blur() 嘅大面積 DOM 元素，如果佢哋嘅父層或者容器冇明確開啓硬體加速，手機為了節省效能，會選擇唔去渲染或者鎖死呢堆光暈嘅動畫，搞到電腦睇到識郁、但手機睇落就完全係死嘅。
-
-要解決手機版「唔識郁」嘅問題，最徹底嘅方法係唔用 absolute 飄黎飄去，改用最穩陣嘅全螢幕背景漸層動畫（background-size 配合 background-position）！
-
-呢個方法完全唔會用到沉重嘅 blur 濾鏡，底層係用純色漸層互相交織，所以無論係 iPhone 定 Android 手機，都可以保證 100% 順暢、高速咁郁動，而且隻深藍底色（#24419c）、天藍（#2ecaf1）同極光白藍（#e9fcff）會融合得非常靚！
-
-請用以下呢個專為手機極速優化嘅版本：
-HTML
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
