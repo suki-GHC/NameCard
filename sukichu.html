@@ -121,13 +121,16 @@
         }
 
         /* 玻璃擬態卡片 */
-        .glass-card {
+            .glass-card {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             margin-top: -55px; 
+            /* 加上呢兩行強制 GPU 加速，徹底解決文字閃爍問題 */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         /* 📱 PWA 獨立 App 模式專用修正：當用家真係由桌面 App 模式打開時，消除負 Margin，讓卡片在全螢幕中絕對置中 */
@@ -154,25 +157,22 @@
             animation: cardEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* 優雅且流暢嘅位移動畫（鎖死 opacity 為 1，絕對唔會閃） */
+        /* 優雅且有層次感嘅漸顯動畫類別（用返原本順暢的版本） */
         .fade-in-up {
-            opacity: 1 !important;
-            transform: translateY(16px);
-            animation: fadeInUpSmooth 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            will-change: transform;
+            opacity: 0;
+            transform: translateY(14px);
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.28s; }
+        .delay-3 { animation-delay: 0.41s; }
+        .delay-4 { animation-delay: 0.54s; }
+        .delay-5 { animation-delay: 0.67s; }
 
-        @keyframes fadeInUpSmooth {
-            from {
-                transform: translateY(16px);
-            }
+        @keyframes fadeInUp {
             to {
+                opacity: 1;
                 transform: translateY(0);
             }
         }
