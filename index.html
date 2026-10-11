@@ -24,10 +24,10 @@
             overflow: hidden; /* 防止背景動畫放大時出現捲軸 */
         }
 
-        /* 背景設定 (已加入呼吸流動光影動畫) */
+/* 動態流動背景設定 (加快速度、加大郁動幅度) */
         .bg-container {
             background-image: url('bg_landingPage.png');
-            background-size: 125% 125%; /* 放大背景以留出空間俾動畫流動 */
+            background-size: 140% 140%; /* 更加大背景尺寸，留出更多空間俾佢游走 */
             background-position: center;
             background-repeat: no-repeat;
             background-color: #0b0b0b;
@@ -38,22 +38,22 @@
             align-items: center;
             text-align: center;
             position: relative;
-            animation: gradientMotion 18s ease-in-out infinite alternate; /* 18秒循環嘅柔和呼吸流動特效 */
+            animation: gradientMotion 10s ease-in-out infinite alternate; /* 將時間縮短到 10秒，郁得明顯啲 */
         }
 
         /* 背景流動與呼吸動畫特效 */
         @keyframes gradientMotion {
             0% {
-                background-position: 0% 40%;
+                background-position: 15% 20%;
                 transform: scale(1);
             }
             50% {
-                background-position: 100% 60%;
-                transform: scale(1.04); /* 輕微呼吸放大 */
+                background-position: 85% 80%;
+                transform: scale(1.08); /* 加大縮放比例，呼吸感更強 */
             }
             100% {
-                background-position: 50% 100%;
-                transform: scale(1);
+                background-position: 50% 90%;
+                transform: scale(1.03);
             }
         }
 
