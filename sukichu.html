@@ -274,16 +274,16 @@
                 </div>
             </div>
 
-            <!-- Save Contact 下面嘅淨 Icon：兩粒都強制設定為 70% 透明度白色，hover 時變全白 -->
-            <div class="flex items-center justify-center gap-6 mb-4 fade-in-up delay-5">
-                <button onclick="openQRCodeModal()" class="text-white/70 hover:text-white transition-colors text-base p-1" title="Show QR Code">
-                    <i class="fa-solid fa-qrcode"></i>
-                </button>
-                <span class="text-white/20">|</span>
-                <button onclick="shareCard()" class="text-white/70 hover:text-white transition-colors text-base p-1" title="Share Card">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </button>
-            </div>
+            <!-- Save Contact 下面嘅淨 Icon（QR Code & Share 節點）無框、細細粒 -->
+            <div class="flex items-center justify-center gap-6 mb-4 fade-in-up delay-5 text-white/70">
+                <button onclick="openQRCodeModal()" class="hover:text-white transition-colors text-base p-1" title="Show QR Code">
+                    <i class="fa-solid fa-qrcode"></i>
+                </button>
+                <span class="text-white/20">|</span>
+                <button onclick="shareCard()" class="hover:text-white transition-colors text-base p-1" title="Share Card">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+            </div>
 
             <!-- 頁尾版權 -->
             <p class="text-[10px] text-gray-400 font-extralight tracking-widest fade-in-up delay-5">© GroovyHouse Ltd. All Rights Reserved.</p>
@@ -391,3 +391,5 @@ END:VCARD`;
     </script>
 </body>
 </html>
+
+個QRcode icon同share icon係咪唔同色，Qrcode好似係灰色，share icon係白色
