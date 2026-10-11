@@ -11,13 +11,12 @@
     <!-- 引入 Google Fonts: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100%;
+            height: 100vh;
             overflow: hidden;
             background-color: #0b0b0b;
         }
@@ -27,43 +26,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             padding: 1rem;
             position: relative;
             z-index: 2;
-            box-sizing: border-box;
-        }
-
-        /* 用最穩陣嘅 CSS Background 黎做背景，保證絕對唔會變黑、100% Full Screen 且有流動感 */
-        .bg-animated-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background-image: url('bg.png'); /* 確保讀取正確嘅 bg.jpg */
-            background-size: 130% 130%;
-            background-position: center;
-            background-repeat: no-repeat;
-            animation: gradientMotion 8s ease-in-out infinite alternate;
-        }
-
-        /* 背景流動與呼吸動畫特效（只影響背景，卡片完全不動） */
-        @keyframes gradientMotion {
-            0% {
-                background-position: 45% 45%;
-                transform: scale(1);
-            }
-            50% {
-                background-position: 55% 55%;
-                transform: scale(1.06);
-            }
-            100% {
-                background-position: 50% 50%;
-                transform: scale(1.02);
-            }
         }
 
         /* 黑色半透明遮罩 */
@@ -76,8 +42,42 @@
             background-color: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
+        
+        /* 背景圖片設定區域（獨立流動動畫，卡片絕不受影響） */
+        .bg-image-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
 
-        /* 玻璃擬態卡片（保持完全企定，絕不呼吸） */
+        .bg-image-container img {
+            width: 130%;
+            height: 130%;
+            object-fit: cover;
+            position: absolute;
+            top: -15%;
+            left: -15%;
+            animation: gradientMotion 8s ease-in-out infinite alternate;
+        }
+
+        /* 背景流動與呼吸動畫（只令背景郁，卡片保持完全靜態） */
+        @keyframes gradientMotion {
+            0% {
+                transform: scale(1) translate(0px, 0px);
+            }
+            50% {
+                transform: scale(1.06) translate(-15px, -10px);
+            }
+            100% {
+                transform: scale(1) translate(10px, 15px);
+            }
+        }
+
+        /* 玻璃擬態卡片（保持完全企定，絕對不呼吸縮放） */
         .glass-card {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(18px);
@@ -95,7 +95,7 @@
             margin: 24px auto 24px auto; 
         }
 
-        /* 卡片整體彈入動畫 */
+        /* 卡片整體彈入動畫（只在頁面初次載入時發生一次） */
         @keyframes cardEntrance {
             from { opacity: 0; transform: translateY(20px) scale(0.96); }
             to { opacity: 1; transform: translateY(0) scale(1); }
@@ -127,14 +127,15 @@
 </head>
 <body class="relative">
 
-    <!-- 穩陣嘅 CSS 背景容器連遮罩 -->
-    <div class="bg-animated-container">
+    <!-- 背景容器 (使用正確嘅 bg.jpg，支援滿版全螢幕流動) -->
+    <div class="bg-image-container">
+        <img src="bg.jpg" alt="Background Image"[cite: 2]>
         <div class="bg-overlay"></div>
     </div>
 
     <!-- 頁面排版容器 -->
     <div class="page-layout">
-        <!-- 主卡片容器（保持完全企定，不會呼吸縮放） -->
+        <!-- 主卡片容器（保持完全企定，絕不呼吸） -->
         <div class="w-full max-w-sm glass-card rounded-[2.8rem] px-8 py-10 text-center text-white relative z-10 animate-entrance">
             
             <!-- Company Logo 與 Company Name -->
