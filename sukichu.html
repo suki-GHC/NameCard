@@ -1,281 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suki Chu | GroovyHouse Creative</title>
-    <!-- 瀏覽器分頁 Tab Icon -->
-    <link rel="icon" type="image/png" href="tabLogo_circle.png">
-    <!-- 引入 Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 FontAwesome 圖示 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 引入 Google Fonts: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <!-- 引入 QRCode.js 用於自動生成 QR Code -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 300;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            overflow: hidden;
-            background-color: #040814;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suki Chu | GroovyHouse Creative</title>
+    <!-- 瀏覽器分頁 Tab Icon -->
+    <link rel="icon" type="image/png" href="tabLogo_circle.png">
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 FontAwesome 圖示 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入 Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <!-- 引入 QRCode.js 用於自動生成 QR Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 300;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #040814;
+        }
 
-        /* 頁面排版容器 */
-        .page-layout {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 1rem;
-        }
+        /* 頁面排版容器 */
+        .page-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
 
-        /* 流動背景容器 */
-        .css-bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
-        }
+        /* 流動背景容器 */
+        .css-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
+        }
 
-        /* 4個動態光暈：Desktop 與 Mobile 完全一致嘅速度與設定 */
-        .glow-orb-1 {
-            position: absolute;
-            top: 10%;
-            right: 10%;
-            width: 65vw;
-            height: 65vw;
-            background: radial-gradient(circle, rgba(0, 140, 255, 0.85) 0%, rgba(0, 70, 220, 0.4) 45%, transparent 75%);
-            border-radius: 50%;
-            filter: blur(35px);
-            will-change: transform;
-            animation: floatOrb1 2.5s ease-in-out infinite alternate;
-        }
+        /* 4個動態光暈：Desktop 與 Mobile 完全一致嘅速度與設定 */
+        .glow-orb-1 {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 65vw;
+            height: 65vw;
+            background: radial-gradient(circle, rgba(0, 140, 255, 0.85) 0%, rgba(0, 70, 220, 0.4) 45%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(35px);
+            will-change: transform;
+            animation: floatOrb1 2.5s ease-in-out infinite alternate;
+        }
 
-        .glow-orb-2 {
-            position: absolute;
-            bottom: 10%;
-            left: 10%;
-            width: 70vw;
-            height: 70vw;
-            background: radial-gradient(circle, rgba(14, 95, 230, 0.8) 0%, rgba(4, 30, 110, 0.4) 45%, transparent 80%);
-            border-radius: 50%;
-            filter: blur(40px);
-            will-change: transform;
-            animation: floatOrb2 3s ease-in-out infinite alternate;
-        }
+        .glow-orb-2 {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(14, 95, 230, 0.8) 0%, rgba(4, 30, 110, 0.4) 45%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(40px);
+            will-change: transform;
+            animation: floatOrb2 3s ease-in-out infinite alternate;
+        }
 
-        .glow-orb-3 {
-            position: absolute;
-            top: 20%;
-            left: 15%;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, rgba(40, 120, 255, 0.8) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(35px);
-            will-change: transform;
-            animation: floatOrb3 2.2s ease-in-out infinite alternate;
-        }
+        .glow-orb-3 {
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(40, 120, 255, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(35px);
+            will-change: transform;
+            animation: floatOrb3 2.2s ease-in-out infinite alternate;
+        }
 
-        .glow-orb-4 {
-            position: absolute;
-            bottom: 20%;
-            right: 15%;
-            width: 62vw;
-            height: 62vw;
-            background: radial-gradient(circle, rgba(0, 120, 255, 0.85) 0%, rgba(10, 40, 130, 0.3) 55%, transparent 80%);
-            border-radius: 50%;
-            filter: blur(35px);
-            will-change: transform;
-            animation: floatOrb4 2.8s ease-in-out infinite alternate;
-        }
+        .glow-orb-4 {
+            position: absolute;
+            bottom: 20%;
+            right: 15%;
+            width: 62vw;
+            height: 62vw;
+            background: radial-gradient(circle, rgba(0, 120, 255, 0.85) 0%, rgba(10, 40, 130, 0.3) 55%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(35px);
+            will-change: transform;
+            animation: floatOrb4 2.8s ease-in-out infinite alternate;
+        }
 
-        /* 暴力級 Motion 設定：極大位移、強烈縮放與旋轉 */
-        @keyframes floatOrb1 {
-            0% { transform: translate3d(0, 0, 0) scale(0.8) rotate(0deg); }
-            100% { transform: translate3d(-38vw, 35vh, 0) scale(1.6) rotate(45deg); }
-        }
+        /* 暴力級 Motion 設定：極大位移、強烈縮放與旋轉 */
+        @keyframes floatOrb1 {
+            0% { transform: translate3d(0, 0, 0) scale(0.8) rotate(0deg); }
+            100% { transform: translate3d(-38vw, 35vh, 0) scale(1.6) rotate(45deg); }
+        }
 
-        @keyframes floatOrb2 {
-            0% { transform: translate3d(0, 0, 0) scale(0.9) rotate(0deg); }
-            100% { transform: translate3d(38vw, -35vh, 0) scale(1.55) rotate(-50deg); }
-        }
+        @keyframes floatOrb2 {
+            0% { transform: translate3d(0, 0, 0) scale(0.9) rotate(0deg); }
+            100% { transform: translate3d(38vw, -35vh, 0) scale(1.55) rotate(-50deg); }
+        }
 
-        @keyframes floatOrb3 {
-            0% { transform: translate3d(0, 0, 0) scale(0.7) rotate(0deg); }
-            100% { transform: translate3d(40vw, 35vh, 0) scale(1.7) rotate(60deg); }
-        }
+        @keyframes floatOrb3 {
+            0% { transform: translate3d(0, 0, 0) scale(0.7) rotate(0deg); }
+            100% { transform: translate3d(40vw, 35vh, 0) scale(1.7) rotate(60deg); }
+        }
 
-        @keyframes floatOrb4 {
-            0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
-            100% { transform: translate3d(-38vw, -35vh, 0) scale(0.75) rotate(-45deg); }
-        }
+        @keyframes floatOrb4 {
+            0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate3d(-38vw, -35vh, 0) scale(0.75) rotate(-45deg); }
+        }
 
-        /* 玻璃擬態卡片 */
-            .glass-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            margin-top: -55px; 
-            /* 加上呢兩行強制 GPU 加速，徹底解決文字閃爍問題 */
-            transform: translateZ(0);
-            will-change: transform;
-        }
+        /* 玻璃擬態卡片 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            margin-top: -55px; 
+        }
 
-        /* 📱 PWA 獨立 App 模式專用修正：當用家真係由桌面 App 模式打開時，消除負 Margin，讓卡片在全螢幕中絕對置中 */
-        @media all and (display-mode: standalone) {
-            .glass-card {
-                margin-top: 0 !important;
-            }
-        }
-        
-        /* 兩端自然收尖嘅半透明白線 */
-        .sharp-divider {
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
-            margin: 24px auto 24px auto; 
-        }
+        /* 📱 PWA 獨立 App 模式專用修正：當用家真係由桌面 App 模式打開時，消除負 Margin，讓卡片在全螢幕中絕對置中 */
+        @media all and (display-mode: standalone) {
+            .glass-card {
+                margin-top: 0 !important;
+            }
+        }
+        
+        /* 兩端自然收尖嘅半透明白線 */
+        .sharp-divider {
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+            margin: 24px auto 24px auto; 
+        }
 
-        /* 卡片整體彈入動畫 */
-        @keyframes cardEntrance {
-            from { opacity: 0; transform: translateY(20px) scale(0.96); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .animate-entrance {
-            animation: cardEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        /* 卡片整體彈入動畫 */
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(20px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-entrance {
+            animation: cardEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
 
-        /* 優雅且有層次感嘅漸顯動畫類別（用返原本順暢的版本） */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(14px);
-            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        /* 優雅且有層次感嘅漸顯動畫類別 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(14px);
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
 
-        .delay-1 { animation-delay: 0.15s; }
-        .delay-2 { animation-delay: 0.28s; }
-        .delay-3 { animation-delay: 0.41s; }
-        .delay-4 { animation-delay: 0.54s; }
-        .delay-5 { animation-delay: 0.67s; }
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.28s; }
+        .delay-3 { animation-delay: 0.41s; }
+        .delay-4 { animation-delay: 0.54s; }
+        .delay-5 { animation-delay: 0.67s; }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        /* Toast 提示樣式 */
-        #toast {
-            visibility: hidden;
-            min-width: 220px;
-            background-color: rgba(0, 0, 0, 0.85);
-            color: #fff;
-            text-align: center;
-            border-radius: 9999px;
-            padding: 12px 20px;
-            position: fixed;
-            z-index: 999;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            font-size: 13px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: opacity 0.3s, visibility 0.3s;
-            opacity: 0;
-        }
-        #toast.show {
-            visibility: visible;
-            opacity: 1;
-        }
-    </style>
+        /* Toast 提示樣式 */
+        #toast {
+            visibility: hidden;
+            min-width: 220px;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            text-align: center;
+            border-radius: 9999px;
+            padding: 12px 20px;
+            position: fixed;
+            z-index: 999;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 13px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: opacity 0.3s, visibility 0.3s;
+            opacity: 0;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
 </head>
 <body class="relative">
 
-    <!-- 4個動態光暈背景層 -->
-    <div class="css-bg-container">
-        <div class="glow-orb-1"></div>
-        <div class="glow-orb-2"></div>
-        <div class="glow-orb-3"></div>
-        <div class="glow-orb-4"></div>
-    </div>
+    <!-- 4個動態光暈背景層 -->
+    <div class="css-bg-container">
+        <div class="glow-orb-1"></div>
+        <div class="glow-orb-2"></div>
+        <div class="glow-orb-3"></div>
+        <div class="glow-orb-4"></div>
+    </div>
 
-    <!-- 頁面排版容器 -->
-    <div class="page-layout">
-        <!-- 主卡片容器 -->
-        <div class="w-full max-w-sm glass-card rounded-[2.8rem] px-8 py-10 text-center text-white relative z-10 animate-entrance">
-            
-            <!-- Company Logo 與 Company Name -->
-            <div class="mb-2 fade-in-up delay-1">
-                <div class="w-90 h-24 mx-auto flex items-center justify-center overflow-hidden opacity-90 transition-transform duration-500 hover:scale-105">
-                    <img src="logo.png" alt="Company Logo" class="w-full h-full object-contain">
-                </div>
-                <h2 class="text-[11px] uppercase tracking-[0.25em] text-gray-200 font-extralight -mt-2">GroovyHouse Limited</h2>
-            </div>
+    <!-- 頁面排版容器 -->
+    <div class="page-layout">
+        <!-- 主卡片容器 -->
+        <div class="w-full max-w-sm glass-card rounded-[2.8rem] px-8 py-10 text-center text-white relative z-10 animate-entrance">
+            
+            <!-- Company Logo 與 Company Name -->
+            <div class="mb-2 fade-in-up delay-1">
+                <div class="w-90 h-24 mx-auto flex items-center justify-center overflow-hidden opacity-90 transition-transform duration-500 hover:scale-105">
+                    <img src="logo.png" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <h2 class="text-[11px] uppercase tracking-[0.25em] text-gray-200 font-extralight -mt-2">GroovyHouse Limited</h2>
+            </div>
 
-            <!-- 兩端自然收尖嘅半透明白線 -->
-            <div class="sharp-divider fade-in-up delay-2"></div>
+            <!-- 兩端自然收尖嘅半透明白線 -->
+            <div class="sharp-divider fade-in-up delay-2"></div>
 
-            <!-- 姓名與 Job Title -->
-            <div class="mb-6 fade-in-up delay-3">
-                <h1 class="text-2xl font-light tracking-wide mb-2 text-white">Suki Chu</h1>
-                <div class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 text-xs font-light tracking-widest backdrop-blur-sm transition-all duration-300 hover:bg-white/20">
-                    Digital & Motion Specialist
-                </div>
-            </div>
+            <!-- 姓名與 Job Title -->
+            <div class="mb-6 fade-in-up delay-3">
+                <h1 class="text-2xl font-light tracking-wide mb-2 text-white">Suki Chu</h1>
+                <div class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 text-xs font-light tracking-widest backdrop-blur-sm transition-all duration-300 hover:bg-white/20">
+                    Digital & Motion Specialist
+                </div>
+            </div>
 
-            <!-- 按鈕群組 -->
-            <div class="space-y-4 mb-6">
-                <!-- 3個圓形 Icon 按鈕並排置中 -->
-                <div class="flex items-center justify-center gap-4 mb-7 fade-in-up delay-4">
-                    <!-- WhatsApp Icon -->
-                    <a href="https://wa.me/85296026777" target="_blank" title="WhatsApp"
-                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-emerald-600 text-white text-xl rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-emerald-500/30">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
+            <!-- 按鈕群組 -->
+            <div class="space-y-4 mb-6">
+                <!-- 3個圓形 Icon 按鈕並排置中 -->
+                <div class="flex items-center justify-center gap-4 mb-7 fade-in-up delay-4">
+                    <!-- WhatsApp Icon -->
+                    <a href="https://wa.me/85296026777" target="_blank" title="WhatsApp"
+                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-emerald-600 text-white text-xl rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-emerald-500/30">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
 
-                    <!-- Call Icon -->
-                    <a href="tel:+85296026777" title="Call"
-                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/25 text-white text-lg rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-white/20">
-                        <i class="fa-solid fa-phone"></i>
-                    </a>
+                    <!-- Call Icon -->
+                    <a href="tel:+85296026777" title="Call"
+                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/25 text-white text-lg rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-white/20">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
 
-                    <!-- Email Icon -->
-                    <a href="mailto:suki@groovyhousecreative.com" title="Email"
-                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/25 text-white text-lg rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-white/20">
-                        <i class="fa-solid fa-envelope"></i>
-                    </a>
-                </div>
+                    <!-- Email Icon -->
+                    <a href="mailto:suki@groovyhousecreative.com" title="Email"
+                       class="w-14 h-14 flex items-center justify-center bg-white/10 hover:bg-white/25 text-white text-lg rounded-full transition-all duration-300 border border-white/15 shadow-lg hover:scale-110 hover:shadow-white/20">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
 
-                <!-- 下方：Our Portfolio 按鈕與 vCard 按鈕 -->
-                <div class="space-y-3.5 fade-in-up delay-5">
-                    <!-- Our Portfolio 連結 -->
-                    <a href="portfolio.pdf" target="_blank" 
-                       class="w-full py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-xs font-light tracking-wide rounded-2xl transition-all duration-300 shadow-md hover:scale-[1.02] flex items-center justify-center gap-2 border border-white/10">
-                        <i class="fa-solid fa-file-lines text-sm"></i> Our Portfolio
-                    </a>
+                <!-- 下方：Our Portfolio 按鈕與 vCard 按鈕 -->
+                <div class="space-y-3.5 fade-in-up delay-5">
+                    <!-- Our Portfolio 連結 -->
+                    <a href="portfolio.pdf" target="_blank" 
+                       class="w-full py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-xs font-light tracking-wide rounded-2xl transition-all duration-300 shadow-md hover:scale-[1.02] flex items-center justify-center gap-2 border border-white/10">
+                        <i class="fa-solid fa-file-lines text-sm"></i> Our Portfolio
+                    </a>
 
-                    <!-- 儲存聯絡人按鈕 (vCard) -->
-                    <button onclick="downloadVCard()" 
-                            class="w-full py-3.5 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white text-xs font-light tracking-wide rounded-2xl transition-all duration-300 shadow-md hover:scale-[1.02] flex items-center justify-center gap-2 border border-white/10">
-                        <i class="fa-solid fa-address-book text-sm"></i> Save Contact
-                    </button>
-                </div>
-            </div>
+                    <!-- 儲存聯絡人按鈕 (vCard) -->
+                    <button onclick="downloadVCard()" 
+                            class="w-full py-3.5 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white text-xs font-light tracking-wide rounded-2xl transition-all duration-300 shadow-md hover:scale-[1.02] flex items-center justify-center gap-2 border border-white/10">
+                        <i class="fa-solid fa-address-book text-sm"></i> Save Contact
+                    </button>
+                </div>
+            </div>
 
             <!-- Save Contact 下面嘅淨 Icon：兩粒都強制設定為 70% 透明度白色，hover 時變全白 -->
             <div class="flex items-center justify-center gap-6 mb-4 fade-in-up delay-5">
@@ -288,90 +285,90 @@
                 </button>
             </div>
 
-            <!-- 頁尾版權 -->
-            <p class="text-[10px] text-gray-400 font-extralight tracking-widest fade-in-up delay-5">© GroovyHouse Ltd. All Rights Reserved.</p>
-        </div>
-    </div>
+            <!-- 頁尾版權 -->
+            <p class="text-[10px] text-gray-400 font-extralight tracking-widest fade-in-up delay-5">© GroovyHouse Ltd. All Rights Reserved.</p>
+        </div>
+    </div>
 
-    <!-- QR Code Popup Modal -->
-    <div id="qrModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeQRCodeModal()">
-        <div class="glass-card bg-[#0b1329]/90 border border-white/20 rounded-[2.5rem] p-8 text-center max-w-xs w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
-            <h3 class="text-sm font-light uppercase tracking-widest text-white mb-6">Scan QR Code</h3>
-            <div id="qrcode" class="bg-white p-4 rounded-2xl inline-block mb-6 shadow-inner flex justify-center"></div>
-            <p class="text-xs text-gray-300 font-light mb-6">Point your camera at the QR code to view this digital business card.</p>
-            <button onclick="closeQRCodeModal()" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white text-xs font-light tracking-wide rounded-2xl transition-all border border-white/15">Close</button>
-        </div>
-    </div>
+    <!-- QR Code Popup Modal -->
+    <div id="qrModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeQRCodeModal()">
+        <div class="glass-card bg-[#0b1329]/90 border border-white/20 rounded-[2.5rem] p-8 text-center max-w-xs w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
+            <h3 class="text-sm font-light uppercase tracking-widest text-white mb-6">Scan QR Code</h3>
+            <div id="qrcode" class="bg-white p-4 rounded-2xl inline-block mb-6 shadow-inner flex justify-center"></div>
+            <p class="text-xs text-gray-300 font-light mb-6">Point your camera at the QR code to view this digital business card.</p>
+            <button onclick="closeQRCodeModal()" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white text-xs font-light tracking-wide rounded-2xl transition-all border border-white/15">Close</button>
+        </div>
+    </div>
 
-    <!-- Toast 提示訊息框 -->
-    <div id="toast">Link copied to clipboard!</div>
+    <!-- Toast 提示訊息框 -->
+    <div id="toast">Link copied to clipboard!</div>
 
-    <!-- JavaScript -->
-    <script>
-        // 自動生成 QR Code
-        new QRCode(document.getElementById("qrcode"), {
-            text: "https://groovyhousecreative.com/sukichu.html",
-            width: 180,
-            height: 180,
-            colorDark: "#040814",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
+    <!-- JavaScript -->
+    <script>
+        // 自動生成 QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: "https://groovyhousecreative.com/sukichu.html",
+            width: 180,
+            height: 180,
+            colorDark: "#040814",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
 
-        function openQRCodeModal() {
-            const modal = document.getElementById('qrModal');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.querySelector('.glass-card').classList.remove('scale-95');
-        }
+        function openQRCodeModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('.glass-card').classList.remove('scale-95');
+        }
 
-        function closeQRCodeModal() {
-            const modal = document.getElementById('qrModal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.querySelector('.glass-card').classList.add('scale-95');
-        }
+        function closeQRCodeModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('.glass-card').classList.add('scale-95');
+        }
 
-        function shareCard() {
-            const shareText = `Here is my digital business card and contact info:\nhttps://groovyhousecreative.com/sukichu.html\nLooking forward to staying in touch!`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Suki Chu | Digital Business Card',
-                    text: shareText,
-                }).catch(() => {
-                    copyToClipboard(shareText);
-                });
-            } else {
-                copyToClipboard(shareText);
-            }
-        }
+        function shareCard() {
+            const shareText = `Here is my digital business card and contact info:\nhttps://groovyhousecreative.com/sukichu.html\nLooking forward to staying in touch!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Suki Chu | Digital Business Card',
+                    text: shareText,
+                }).catch(() => {
+                    copyToClipboard(shareText);
+                });
+            } else {
+                copyToClipboard(shareText);
+            }
+        }
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showToast("Link and message copied!");
-            }).catch(() => {
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    showToast("Link and message copied!");
-                } catch (err) {
-                    showToast("Failed to copy");
-                }
-                document.body.removeChild(textArea);
-            });
-        }
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Link and message copied!");
+            }).catch(() => {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast("Link and message copied!");
+                } catch (err) {
+                    showToast("Failed to copy");
+                }
+                document.body.removeChild(textArea);
+            });
+        }
 
-        function showToast(message) {
-            const toast = document.getElementById("toast");
-            toast.innerText = message;
-            toast.className = "show";
-            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-        }
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+        }
 
-        function downloadVCard() {
-            const vCardData = 
+        function downloadVCard() {
+            const vCardData = 
 `BEGIN:VCARD
 VERSION:3.0
 N:Chu;Suki;;;
@@ -382,15 +379,15 @@ TEL;TYPE=CELL:+85296026777
 EMAIL:suki@groovyhousecreative.com
 END:VCARD`;
 
-            const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Suki_Chu.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
+            const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Suki_Chu.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 </body>
 </html>
