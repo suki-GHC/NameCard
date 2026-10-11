@@ -26,34 +26,97 @@
             overflow: hidden;
         }
 
-        /* 手機與電腦完全通吃嘅高速流動漸層背景 (保證手機一定識郁) */
+        /* 頁面容器 */
         .page-container {
             width: 100%;
             height: 100vh;
-            /* 完美融合 3 隻指定顏色：#24419c (深藍底), #2ecaf1 (天藍光), #e9fcff (極光白藍) */
-            background: linear-gradient(135deg, #24419c 0%, #2ecaf1 45%, #e9fcff 70%, #24419c 100%);
-            background-size: 300% 300%;
+            background: radial-gradient(circle at 50% 50%, #2f52b6 0%, #24419c 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             overflow: hidden;
-            animation: mobileSafeFlow 2.5s ease-in-out infinite alternate;
-            -webkit-animation: mobileSafeFlow 2.5s ease-in-out infinite alternate;
         }
 
-        /* 高速流動動畫：強制手機 GPU 順暢運作 */
-        @keyframes mobileSafeFlow {
-            0% {
-                background-position: 0% 20%;
+        /* 光暈 1：極光白藍 #e9fcff (預設手機加大尺寸，確保夠大塊) */
+        .glow-1 {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 120vw;
+            height: 120vw;
+            background: radial-gradient(circle, rgba(233, 252, 255, 0.95) 0%, rgba(46, 202, 241, 0.4) 50%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(45px);
+            animation: flowOrb1 2.2s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /* 光暈 2：電光天藍 #2ecaf1 */
+        .glow-2 {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            width: 130vw;
+            height: 130vw;
+            background: radial-gradient(circle, rgba(46, 202, 241, 0.9) 0%, rgba(36, 65, 156, 0.35) 60%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(55px);
+            animation: flowOrb2 2.5s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /* 光暈 3：中間交織點 */
+        .glow-3 {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 110vw;
+            height: 110vw;
+            background: radial-gradient(circle, rgba(233, 252, 255, 0.8) 0%, rgba(46, 202, 241, 0.45) 55%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: flowOrb3 2.3s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /* 桌面版（768px以上）：還原你原本理想嘅光暈大小與位置 */
+        @media (min-width: 768px) {
+            .glow-1 {
+                top: 5%;
+                left: 10%;
+                width: 60vw;
+                height: 60vw;
             }
-            50% {
-                background-position: 100% 80%;
+            .glow-2 {
+                bottom: 5%;
+                right: 10%;
+                width: 65vw;
+                height: 65vw;
             }
-            100% {
-                background-position: 50% 100%;
+            .glow-3 {
+                top: 25%;
+                left: 25%;
+                width: 55vw;
+                height: 55vw;
             }
+        }
+
+        /* 高速流動動畫 */
+        @keyframes flowOrb1 {
+            0% { transform: translate3d(0vw, 0vh, 0) scale(1); }
+            100% { transform: translate3d(20vw, 15vh, 0) scale(1.15); }
+        }
+
+        @keyframes flowOrb2 {
+            0% { transform: translate3d(0vw, 0vh, 0) scale(1); }
+            100% { transform: translate3d(-20vw, -15vh, 0) scale(0.9); }
+        }
+
+        @keyframes flowOrb3 {
+            0% { transform: translate3d(0vw, 0vh, 0) scale(0.95); }
+            100% { transform: translate3d(-15vw, 18vh, 0) scale(1.1); }
         }
 
         /* 中間內容區 */
@@ -97,10 +160,10 @@
             }
         }
 
-        /* 底部 Copyright */
+        /* 底部 Copyright：適配手機與電腦，保證絕對唔會跌出芒外面 */
         .footer-copy {
             position: absolute;
-            bottom: 25px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             color: rgba(255, 255, 255, 0.85);
@@ -115,6 +178,11 @@
 <body>
 
     <div class="page-container">
+        <!-- 3舊光暈 -->
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="glow-3"></div>
+
         <!-- 中間 Logo 與 Coming Soon -->
         <div class="content">
             <div class="logo">
