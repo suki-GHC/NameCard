@@ -26,22 +26,22 @@
             overflow: hidden;
         }
 
-        /* 頁面容器：改用 Flexbox 上下撐開，保證手機 Footer 絕不消失 */
+        /* 頁面容器：Flexbox 上下撐開 */
         .page-container {
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at 50% 50%, #2f52b6 0%, #24419c 100%);
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* 頂部留空、中間放 Logo、底部放 Copyright */
+            justify-content: space-between;
             align-items: center;
             position: relative;
             overflow: hidden;
             box-sizing: border-box;
-            padding: 40px 20px;
+            padding: 20px; /* 手機版 Padding */
         }
 
-        /* 光暈 1：極光白藍 #e9fcff (Mobile 自動放大成大塊光暈，Desktop Keep 返你原本嘅大小) */
+        /* 光暈 1：極光白藍 #e9fcff (Mobile 大塊光暈) */
         .glow-1 {
             position: absolute;
             top: 5%;
@@ -72,7 +72,7 @@
         /* 光暈 3：中間交織點 */
         .glow-3 {
             position: absolute;
-            top: 25%;
+            top: 20%;
             left: 20%;
             width: 100vw;
             height: 100vw;
@@ -83,10 +83,10 @@
             z-index: 1;
         }
 
-        /* 桌面版（768px以上）：完全 Keep 返上個版本嘅精緻尺寸與位置 */
+        /* 桌面版（768px以上）：完全維持原本比例與置中 */
         @media (min-width: 768px) {
             .page-container {
-                justify-content: center; /* 電腦版維持正中間置中 */
+                justify-content: center;
                 padding: 0;
             }
             .glow-1 {
@@ -125,10 +125,13 @@
             100% { transform: translate3d(-18vw, 22vh, 0) scale(1.2); }
         }
 
-        /* 頂部隱形佔位（令 Flexbox 將內容完美推向正中間，同時為手機留位） */
+        /* === 關鍵修改：Mobile 頂部佔位 === */
+        /* 預設手機版：設定一個較大嘅高度，將內容推向上方 */
         .spacer-top {
-            height: 0;
+            height: 6vh; /* 手機版頂部留白 (可按需要微調) */
+            flex-shrink: 0;
         }
+        /* 桌面版（768px以上）：隱藏佔位，讓內容恢復絕對置中 */
         @media (min-width: 768px) {
             .spacer-top { display: none; }
         }
@@ -136,15 +139,16 @@
         /* 中間內容區 */
         .content {
             text-align: center;
-            padding: 20px;
+            padding: 10px; /* 減少 Padding 令內容更緊湊 */
             z-index: 10;
+            flex-shrink: 0;
         }
 
         .logo img {
-            max-width: 260px;
+            max-width: 260px; /* 手機版 Logo 大小 */
             width: 100%;
             height: auto;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -174,7 +178,7 @@
             }
         }
 
-        /* 底部 Copyright：用 Flexbox 自然流動，手機電腦都保證穩陣見到 */
+        /* 底部 Copyright：手機電腦都保證穩陣見到 */
         .footer-copy {
             z-index: 10;
             color: rgba(255, 255, 255, 0.85);
@@ -182,6 +186,8 @@
             letter-spacing: 1px;
             white-space: nowrap;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            padding-bottom: 10px; /* 手機版底部距離 */
+            flex-shrink: 0;
         }
         @media (min-width: 768px) {
             .footer-copy {
@@ -189,6 +195,7 @@
                 bottom: 25px;
                 left: 50%;
                 transform: translateX(-50%);
+                padding-bottom: 0;
             }
         }
     </style>
@@ -201,7 +208,7 @@
         <div class="glow-2"></div>
         <div class="glow-3"></div>
 
-        <!-- 頂部佔位（幫助手機版完美置中） -->
+        <!-- 頂部佔位：Mobile 版高度設為 6vh，將內容推上 -->
         <div class="spacer-top"></div>
 
         <!-- 中間 Logo 與 Coming Soon -->
@@ -214,7 +221,7 @@
             </div>
         </div>
 
-        <!-- 底部版權宣告（手機自然置底，電腦 Absolute 定位） -->
+        <!-- 底部版權宣告 -->
         <div class="footer-copy">
             © GroovyHouse Ltd. All Rights Reserved.
         </div>
