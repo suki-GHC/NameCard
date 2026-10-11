@@ -42,7 +42,7 @@
             background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
         }
 
-        /* 4個動態光暈：極度強烈嘅 VJ 級 Motion，加快速度同大幅度位移、伸縮 */
+        /* 4個動態光暈：Desktop 預設你俾嘅速度 */
         .glow-orb-1 {
             position: absolute;
             top: 10%;
@@ -95,7 +95,7 @@
             animation: floatOrb4 2.8s ease-in-out infinite alternate;
         }
 
-        /* 暴力級 Motion 設定：極大位移、強烈縮放與旋轉，確保手機肉眼極度明顯 */
+        /* 暴力級 Motion 設定：極大位移、強烈縮放與旋轉 */
         @keyframes floatOrb1 {
             0% { transform: translate3d(0, 0, 0) scale(0.8) rotate(0deg); }
             100% { transform: translate3d(-38vw, 35vh, 0) scale(1.6) rotate(45deg); }
@@ -114,6 +114,14 @@
         @keyframes floatOrb4 {
             0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
             100% { transform: translate3d(-38vw, -35vh, 0) scale(0.75) rotate(-45deg); }
+        }
+
+        /* 📱 Mobile 專用優化：當螢幕細過 768px 時，動畫速度加快大約 1 倍（變得更快、更動感） */
+        @media screen and (max-width: 768px) {
+            .glow-orb-1 { animation-duration: 1.2s !important; }
+            .glow-orb-2 { animation-duration: 1.4s !important; }
+            .glow-orb-3 { animation-duration: 1.0s !important; }
+            .glow-orb-4 { animation-duration: 1.3s !important; }
         }
 
         /* 玻璃擬態卡片 */
