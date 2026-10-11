@@ -116,12 +116,41 @@
             100% { transform: translate3d(-38vw, -35vh, 0) scale(0.75) rotate(-45deg); }
         }
 
-        /* 📱 Mobile 專用加速：當螢幕細過 768px 時，將速度再加快一倍（0.5s - 0.7s），動感極強 */
+        /* 📱 Mobile 極速狂野版：速度壓到 0.25s - 0.4s，位移加大到 50vw/50vh，極度明顯！ */
         @media screen and (max-width: 768px) {
-            .glow-orb-1 { animation-duration: 0.6s !important; }
-            .glow-orb-2 { animation-duration: 0.7s !important; }
-            .glow-orb-3 { animation-duration: 0.5s !important; }
-            .glow-orb-4 { animation-duration: 0.65s !important; }
+            .glow-orb-1 { 
+                width: 85vw; height: 85vw;
+                animation: mobileOrb1 0.3s ease-in-out infinite alternate !important; 
+            }
+            .glow-orb-2 { 
+                width: 90vw; height: 90vw;
+                animation: mobileOrb2 0.35s ease-in-out infinite alternate !important; 
+            }
+            .glow-orb-3 { 
+                width: 80vw; height: 80vw;
+                animation: mobileOrb3 0.25s ease-in-out infinite alternate !important; 
+            }
+            .glow-orb-4 { 
+                width: 82vw; height: 82vw;
+                animation: mobileOrb4 0.32s ease-in-out infinite alternate !important; 
+            }
+        }
+
+        @keyframes mobileOrb1 {
+            0% { transform: translate3d(0, 0, 0) scale(0.6) rotate(0deg); }
+            100% { transform: translate3d(-48vw, 45vh, 0) scale(2.0) rotate(90deg); }
+        }
+        @keyframes mobileOrb2 {
+            0% { transform: translate3d(0, 0, 0) scale(0.7) rotate(0deg); }
+            100% { transform: translate3d(48vw, -45vh, 0) scale(1.9) rotate(-90deg); }
+        }
+        @keyframes mobileOrb3 {
+            0% { transform: translate3d(0, 0, 0) scale(0.5) rotate(0deg); }
+            100% { transform: translate3d(50vw, 45vh, 0) scale(2.2) rotate(120deg); }
+        }
+        @keyframes mobileOrb4 {
+            0% { transform: translate3d(0, 0, 0) scale(0.8) rotate(0deg); }
+            100% { transform: translate3d(-48vw, -45vh, 0) scale(1.7) rotate(-100deg); }
         }
 
         /* 玻璃擬態卡片 */
