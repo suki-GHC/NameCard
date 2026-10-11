@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- 引入 Google Fonts: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <style>
+<style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
@@ -20,10 +20,10 @@
             overflow: hidden;
         }
 
-        /* 透過覆寫 Tailwind 嘅置中，改為置頂並向下留適當空間，確保手機電腦一致向上移 */
+        /* 頁面排版容器 */
         .page-layout {
             display: flex;
-            align-items: center;       /* 預設置中，但透過 margin 微調 */
+            align-items: center;
             justify-content: center;
             min-height: 100vh;
             padding: 1rem;
@@ -63,14 +63,22 @@
             to { transform: scale(1.08); }
         }
 
-        /* 玻璃擬態卡片（加上輕微向上偏移，手機電腦同步） */
+        /* 玻璃擬態卡片（向上微調以適應較長嘅名字） */
         .glass-card {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            margin-top: -30px; /* 向上推高，數值可隨意調整 */
+            margin-top: -55px; 
+        }
+
+        /* 兩端自然收尖嘅半透明白線 (完美修正) */
+        .sharp-divider {
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+            margin: 24px auto 24px auto; 
         }
 
         /* 卡片整體彈入動畫 */
