@@ -25,37 +25,34 @@
             background-color: #0b0b0b;
         }
 
-        /* 動態背景容器（獨立 Layer，確保手機電腦都100%順暢郁動） */
-        .bg-image-container {
+        /* 動態背景圖層（用 CSS Background 確保百分之百順利顯示並流動） */
+        .bg-animated {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
-        }
-
-        .bg-image-container img {
-            width: 130%;
-            height: 130%;
-            object-fit: cover;
-            position: absolute;
-            top: -15%;
-            left: -15%;
+            background-image: url('bg_landingPage.png');
+            background-size: 140% 140%; /* 放大背景以留出空間俾佢郁動 */
+            background-position: center;
+            background-repeat: no-repeat;
             animation: gradientMotion 6s ease-in-out infinite alternate;
         }
 
-        /* 手機同電腦都睇得到嘅明顯流動與呼吸動畫 */
+        /* 手機同電腦都睇得到嘅流動與呼吸動畫 */
         @keyframes gradientMotion {
             0% {
-                transform: scale(1) translate(0px, 0px);
+                background-position: 20% 30%;
+                transform: scale(1);
             }
             50% {
-                transform: scale(1.08) translate(-20px, -15px);
+                background-position: 80% 70%;
+                transform: scale(1.06);
             }
             100% {
-                transform: scale(1.03) translate(15px, 20px);
+                background-position: 50% 85%;
+                transform: scale(1.02);
             }
         }
 
@@ -113,7 +110,7 @@
             }
         }
 
-        /* 底部版權宣告（獨立固定喺畫面底部，絕對唔會跟住背景郁） */
+        /* 底部版權宣告（固定喺畫面底部，背景點郁都唔會影響佢） */
         .footer-copy {
             position: fixed;
             bottom: 25px;
@@ -133,10 +130,8 @@
 </head>
 <body>
 
-    <!-- 動態背景圖層 -->
-    <div class="bg-image-container">
-        <img src="bg_landingPage.png" alt="Background Image">
-    </div>
+    <!-- CSS 動態背景圖層 -->
+    <div class="bg-animated"></div>
 
     <!-- 內容容器 -->
     <div class="bg-container">
@@ -150,7 +145,7 @@
         </div>
     </div>
 
-    <!-- 底部版權宣告（獨立固定） -->
+    <!-- 底部版權宣告 -->
     <div class="footer-copy">
         © 2026 GroovyHouse Ltd. All Rights Reserved.
     </div>
