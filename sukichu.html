@@ -42,60 +42,60 @@
             background: radial-gradient(circle at 50% 50%, #0d1b3a 0%, #040814 100%);
         }
 
-        /* 4個動態光暈：尺寸維持飽滿，動畫秒數調返desktop一樣（18s - 22s） */
+        /* 4個動態光暈：進一步加大尺寸（110vw - 120vw），保持 desktop 悠長優雅速度 */
         .glow-orb-1 {
             position: absolute;
-            top: 5%;
-            right: 5%;
-            width: 85vw;
-            height: 85vw;
+            top: -10%;
+            right: -10%;
+            width: 115vw;
+            height: 115vw;
             background: radial-gradient(circle, rgba(0, 140, 255, 0.8) 0%, rgba(0, 70, 220, 0.35) 50%, transparent 75%);
             border-radius: 50%;
-            filter: blur(50px);
+            filter: blur(60px);
             will-change: transform;
             animation: floatOrb1 18s ease-in-out infinite alternate;
         }
 
         .glow-orb-2 {
             position: absolute;
-            bottom: 5%;
-            left: 5%;
-            width: 90vw;
-            height: 90vw;
+            bottom: -10%;
+            left: -10%;
+            width: 120vw;
+            height: 120vw;
             background: radial-gradient(circle, rgba(14, 95, 230, 0.75) 0%, rgba(4, 30, 110, 0.35) 50%, transparent 80%);
             border-radius: 50%;
-            filter: blur(55px);
+            filter: blur(65px);
             will-change: transform;
             animation: floatOrb2 22s ease-in-out infinite alternate;
         }
 
         .glow-orb-3 {
             position: absolute;
-            top: 10%;
-            left: 10%;
-            width: 80vw;
-            height: 80vw;
+            top: -5%;
+            left: -5%;
+            width: 110vw;
+            height: 110vw;
             background: radial-gradient(circle, rgba(40, 120, 255, 0.75) 0%, transparent 70%);
             border-radius: 50%;
-            filter: blur(50px);
+            filter: blur(60px);
             will-change: transform;
             animation: floatOrb3 16s ease-in-out infinite alternate;
         }
 
         .glow-orb-4 {
             position: absolute;
-            bottom: 10%;
-            right: 10%;
-            width: 82vw;
-            height: 82vw;
+            bottom: -5%;
+            right: -5%;
+            width: 112vw;
+            height: 112vw;
             background: radial-gradient(circle, rgba(0, 120, 255, 0.8) 0%, rgba(10, 40, 130, 0.25) 60%, transparent 80%);
             border-radius: 50%;
-            filter: blur(50px);
+            filter: blur(60px);
             will-change: transform;
             animation: floatOrb4 20s ease-in-out infinite alternate;
         }
 
-        /* 恢復平緩、悠長嘅 Desktop 速度 Motion */
+        /* 悠長平緩嘅 Motion */
         @keyframes floatOrb1 {
             0% { transform: translate3d(0, 0, 0) scale(0.9) rotate(0deg); }
             100% { transform: translate3d(-18vw, 18vh, 0) scale(1.2) rotate(15deg); }
