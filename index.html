@@ -22,7 +22,7 @@
             height: 100%;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
-            background-color: #24419c; /* 深色底色作為基調 */
+            background-color: #24419c;
             overflow: hidden;
         }
 
@@ -39,62 +39,65 @@
             overflow: hidden;
         }
 
-        /* 光暈 1：極光白藍 #e9fcff（集中喺左上方至中央，確保手機必見） */
+        /* 光暈 1：極光白藍 #e9fcff */
         .glow-1 {
             position: absolute;
-            top: 10%;
-            left: 5%;
-            width: 65vw;
-            height: 65vw;
-            background: radial-gradient(circle, rgba(233, 252, 255, 0.85) 0%, rgba(46, 202, 241, 0.3) 50%, transparent 75%);
-            border-radius: 50%;
-            filter: blur(45px);
-            animation: slowFlow1 8s ease-in-out infinite alternate;
-            z-index: 1;
-        }
-
-        /* 光暈 2：電光天藍 #2ecaf1（集中喺右下方，與光暈1互相呼應） */
-        .glow-2 {
-            position: absolute;
-            bottom: 10%;
-            right: 5%;
-            width: 70vw;
-            height: 70vw;
-            background: radial-gradient(circle, rgba(46, 202, 241, 0.8) 0%, rgba(36, 65, 156, 0.3) 60%, transparent 80%);
-            border-radius: 50%;
-            filter: blur(55px);
-            animation: slowFlow2 10s ease-in-out infinite alternate;
-            z-index: 1;
-        }
-
-        /* 光暈 3：中間交織點，確保正中間任何時候都見到三色融合 */
-        .glow-3 {
-            position: absolute;
-            top: 30%;
-            left: 20%;
+            top: 5%;
+            left: 10%;
             width: 60vw;
             height: 60vw;
-            background: radial-gradient(circle, rgba(233, 252, 255, 0.65) 0%, rgba(46, 202, 241, 0.35) 55%, transparent 80%);
+            background: radial-gradient(circle, rgba(233, 252, 255, 0.9) 0%, rgba(46, 202, 241, 0.35) 50%, transparent 75%);
             border-radius: 50%;
             filter: blur(50px);
-            animation: slowFlow3 9s ease-in-out infinite alternate;
+            will-change: transform;
+            animation: moveGlow1 9s ease-in-out infinite alternate;
             z-index: 1;
         }
 
-        /* 慢丁丁、優雅嘅緩慢呼吸流動動畫 */
-        @keyframes slowFlow1 {
-            0% { transform: translate3d(0, 0, 0) scale(0.9); }
-            100% { transform: translate3d(10vw, 8vh, 0) scale(1.1); }
+        /* 光暈 2：電光天藍 #2ecaf1 */
+        .glow-2 {
+            position: absolute;
+            bottom: 5%;
+            right: 10%;
+            width: 65vw;
+            height: 65vw;
+            background: radial-gradient(circle, rgba(46, 202, 241, 0.85) 0%, rgba(36, 65, 156, 0.3) 60%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(60px);
+            will-change: transform;
+            animation: moveGlow2 11s ease-in-out infinite alternate;
+            z-index: 1;
         }
 
-        @keyframes slowFlow2 {
-            0% { transform: translate3d(0, 0, 0) scale(1); }
-            100% { transform: translate3d(-10vw, -8vh, 0) scale(0.9); }
+        /* 光暈 3：中間交織點 */
+        .glow-3 {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(233, 252, 255, 0.7) 0%, rgba(46, 202, 241, 0.4) 55%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(45px);
+            will-change: transform;
+            animation: moveGlow3 10s ease-in-out infinite alternate;
+            z-index: 1;
         }
 
-        @keyframes slowFlow3 {
-            0% { transform: translate3d(0, 0, 0) scale(0.85); }
-            100% { transform: translate3d(8vw, -8vh, 0) scale(1.05); }
+        /* 強制開啓 GPU 硬件加速嘅慢丁丁流動動畫 */
+        @keyframes moveGlow1 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(45px, 35px) scale(1.15); }
+        }
+
+        @keyframes moveGlow2 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(-50px, -40px) scale(0.9); }
+        }
+
+        @keyframes moveGlow3 {
+            0% { transform: translate(0px, 0px) scale(0.95); }
+            100% { transform: translate(-35px, 45px) scale(1.1); }
         }
 
         /* 中間內容區 */
@@ -156,7 +159,7 @@
 <body>
 
     <div class="page-container">
-        <!-- 3舊光暈重新佈局，確保手機與電腦都可以同時見齊 3 隻色 -->
+        <!-- 3舊開咗 GPU 加速嘅流動光暈 -->
         <div class="glow-1"></div>
         <div class="glow-2"></div>
         <div class="glow-3"></div>
