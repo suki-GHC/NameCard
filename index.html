@@ -1,3 +1,10 @@
+收到！要將個流動速度加快返。
+
+我將動畫秒數由原本嘅 9-11 秒缩短到 2 秒至 3 秒，並且加大咗位移幅度，等啲光暈喺背景度好快、好有活力咁郁動！
+
+以下係加 快 版嘅完整程式碼：
+HTML
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +57,7 @@
             border-radius: 50%;
             filter: blur(50px);
             will-change: transform;
-            animation: moveGlow1 9s ease-in-out infinite alternate;
+            animation: moveGlow1 2.2s ease-in-out infinite alternate;
             z-index: 1;
         }
 
@@ -65,7 +72,7 @@
             border-radius: 50%;
             filter: blur(60px);
             will-change: transform;
-            animation: moveGlow2 11s ease-in-out infinite alternate;
+            animation: moveGlow2 2.6s ease-in-out infinite alternate;
             z-index: 1;
         }
 
@@ -80,24 +87,24 @@
             border-radius: 50%;
             filter: blur(45px);
             will-change: transform;
-            animation: moveGlow3 10s ease-in-out infinite alternate;
+            animation: moveGlow3 2.4s ease-in-out infinite alternate;
             z-index: 1;
         }
 
-        /* 強制開啓 GPU 硬件加速嘅慢丁丁流動動畫 */
+        /* 加快版流動動畫（2至2.6秒極速漂移） */
         @keyframes moveGlow1 {
             0% { transform: translate(0px, 0px) scale(1); }
-            100% { transform: translate(45px, 35px) scale(1.15); }
+            100% { transform: translate(80px, 60px) scale(1.2); }
         }
 
         @keyframes moveGlow2 {
             0% { transform: translate(0px, 0px) scale(1); }
-            100% { transform: translate(-50px, -40px) scale(0.9); }
+            100% { transform: translate(-90px, -70px) scale(0.85); }
         }
 
         @keyframes moveGlow3 {
             0% { transform: translate(0px, 0px) scale(0.95); }
-            100% { transform: translate(-35px, 45px) scale(1.1); }
+            100% { transform: translate(-70px, 80px) scale(1.15); }
         }
 
         /* 中間內容區 */
@@ -159,7 +166,7 @@
 <body>
 
     <div class="page-container">
-        <!-- 3舊開咗 GPU 加速嘅流動光暈 -->
+        <!-- 3舊高速流動嘅光暈 -->
         <div class="glow-1"></div>
         <div class="glow-2"></div>
         <div class="glow-3"></div>
