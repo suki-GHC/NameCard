@@ -154,22 +154,25 @@
             animation: cardEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* 優雅且有層次感嘅漸顯動畫類別 */
+        /* 優雅且流暢嘅位移動畫（鎖死 opacity 為 1，絕對唔會閃） */
         .fade-in-up {
-            opacity: 0;
-            transform: translateY(14px);
-            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 1 !important;
+            transform: translateY(16px);
+            animation: fadeInUpSmooth 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            will-change: transform;
         }
 
-        .delay-1 { animation-delay: 0.15s; }
-        .delay-2 { animation-delay: 0.28s; }
-        .delay-3 { animation-delay: 0.41s; }
-        .delay-4 { animation-delay: 0.54s; }
-        .delay-5 { animation-delay: 0.67s; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
 
-        @keyframes fadeInUp {
+        @keyframes fadeInUpSmooth {
+            from {
+                transform: translateY(16px);
+            }
             to {
-                opacity: 1;
                 transform: translateY(0);
             }
         }
