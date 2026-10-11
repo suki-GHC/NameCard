@@ -60,10 +60,10 @@
 
         /* === Logo 大小設定 (手機版 vs 電腦版) === */
         .logo img {
-            max-width: 260px; /* 預設手機版：適中偏小，唔會塞滿個畫面 */
+            max-width: 220px; /* 手機版 Logo 縮小配合 */
             width: 100%;
             height: auto;
-            margin-bottom: 2rem;
+            margin-bottom: 1.8rem;
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -73,22 +73,24 @@
         .coming-soon h2 {
             font-family: 'GrandCru', sans-serif;
             color: #ffffff;
-            font-size: 1.8rem;     /* 預設手機版字體大小 */
-            letter-spacing: 6px;   /* 手機版字距 */
+            font-size: 1.1rem;     /* 預設手機版字體調得好細緻、俐落 */
+            letter-spacing: 4px;   /* 手機版字距相應收窄 */
             text-transform: uppercase;
             margin: 0;
             font-weight: 300;
+            opacity: 0.9;
         }
 
         /* 當螢幕闊度大於 768px（即平版同電腦 Desktop）時生效 */
         @media (min-width: 768px) {
             .logo img {
-                max-width: 380px;  /* 電腦版：還原返你原本想要嘅大器尺寸 */
+                max-width: 380px;  /* 電腦版維持大器尺寸 */
                 margin-bottom: 2.5rem;
             }
             .coming-soon h2 {
-                font-size: 2.5rem; /* 電腦版：還原大字 */
-                letter-spacing: 8px; /* 電腦版字距 */
+                font-size: 2.5rem; /* 電腦版還原大字 */
+                letter-spacing: 8px; /* 電腦版寬字距 */
+                opacity: 1;
             }
         }
 
