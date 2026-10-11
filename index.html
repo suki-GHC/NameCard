@@ -22,42 +22,86 @@
             height: 100%;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300;
-            background-color: #040814;
+            background-color: #24419c;
+            overflow: hidden;
         }
 
-        /* 快速流動嘅專屬藍調漸層背景 */
+        /* 頁面容器：以深邃 VJ 藍色做底 */
         .page-container {
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, #e9fcff 0%, #2ecaf1 50%, #24419c 100%);
-            background-size: 300% 300%;
+            background: #24419c;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             overflow: hidden;
-            animation: fastFlowGradient 3s ease-in-out infinite alternate;
         }
 
-        /* 高速流動變色動畫（3秒極速循環） */
-        @keyframes fastFlowGradient {
-            0% {
-                background-position: 0% 20%;
-            }
-            50% {
-                background-position: 100% 80%;
-            }
-            100% {
-                background-position: 50% 100%;
-            }
+        /* 大塊光暈 1：以極光白藍 #e9fcff 為主，大範圍暈染，快速流動 */
+        .glow-1 {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(233, 252, 255, 0.9) 0%, rgba(46, 202, 241, 0.5) 50%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: fastFlow1 3s ease-in-out infinite alternate;
+            z-index: 1;
         }
 
-        /* 中間內容區（Logo + Coming Soon） */
+        /* 大塊光暈 2：以電光天藍 #2ecaf1 為主，營造大片光感 */
+        .glow-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 75vw;
+            height: 75vw;
+            background: radial-gradient(circle, rgba(46, 202, 241, 0.85) 0%, rgba(233, 252, 255, 0.4) 45%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(70px);
+            animation: fastFlow2 3.5s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /* 大塊光暈 3：中心交織嘅冰藍光波，加強整體亮度 */
+        .glow-3 {
+            position: absolute;
+            top: 20%;
+            right: 15%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(233, 252, 255, 0.75) 0%, rgba(46, 202, 241, 0.3) 60%, transparent 80%);
+            border-radius: 50%;
+            filter: blur(50px);
+            animation: fastFlow3 2.5s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /* 光暈高速流動動畫（3秒快速交織） */
+        @keyframes fastFlow1 {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            100% { transform: translate3d(25vw, 20vh, 0) scale(1.25); }
+        }
+
+        @keyframes fastFlow2 {
+            0% { transform: translate3d(0, 0, 0) scale(1.1); }
+            100% { transform: translate3d(-25vw, -20vh, 0) scale(0.9); }
+        }
+
+        @keyframes fastFlow3 {
+            0% { transform: translate3d(0, 0, 0) scale(0.9); }
+            100% { transform: translate3d(-20vw, 25vh, 0) scale(1.3); }
+        }
+
+        /* 中間內容區（Logo + Coming Soon，層級設在光暈之上） */
         .content {
             text-align: center;
             padding: 20px;
-            z-index: 2;
+            z-index: 10;
         }
 
         .logo img {
@@ -79,7 +123,7 @@
             margin: 0;
             font-weight: 300;
             opacity: 0.95;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* 桌面版放大調整 */
@@ -103,15 +147,20 @@
             color: rgba(255, 255, 255, 0.85);
             font-size: 10px;
             letter-spacing: 1px;
-            z-index: 2;
+            z-index: 10;
             white-space: nowrap;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
 
     <div class="page-container">
+        <!-- 3舊超大塊、高亮度嘅流動光暈（主力使用 #e9fcff 與 #2ecaf1） -->
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="glow-3"></div>
+
         <!-- 中間 Logo 與 Coming Soon -->
         <div class="content">
             <div class="logo">
